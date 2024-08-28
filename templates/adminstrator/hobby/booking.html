@@ -1,0 +1,151 @@
+{% extends base_template %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+        <div class="row layout-top-spacing">
+            
+            
+            
+
+            <div class="col-lg-12 col-12 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    
+                    <div class="widget-content widget-content-area">
+                        
+                        <div class="col-lg-12 col-12 layout-spacing">
+
+                            <div id="danger_alert" class="w-100 mt-5 pr-5 pl-5 position-sticky d-none" style="top: 120px; z-index: 1000;">
+                                <div class="alert alert-danger mb-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <strong>خطا!</strong> <span id="msg-danger"></span> </div>
+                            </div>
+                            <div id="success_alert" class="w-100 mt-5 pr-5 pl-5 position-sticky d-none" style="top: 120px; z-index: 1000;">
+                                <div class="alert alert-success mb-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <strong>موفقیت!</strong> <span id="msg-success"></span> </div>
+                            </div>
+
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4> یک تاریخ را انتخاب کنید</h4>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="widget-content widget-content-area">
+                                    
+                                    <form enctype="multipart/form-data" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-12">
+                                                <input type="hidden" id="booking_specify_holiday">
+                                                <input type="text" class="form-control bd-hide" id="booking-date">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row mb-4 d-none align-items-center" id="select_booking">
+                                            <label for="game_time">سانس مورد نظر را انتخاب کنید</label>
+                                            
+                                            <div class="form-group col-md-6 d-flex justify-content-center">
+                                                <input type="hidden" value="{{game_time_ids}}">
+                                                <select id="game_time" name="game_time" class="form-control m-3" required>
+                                                    <option class="" value="" id="">-----</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4 d-none justify-content-center" id="BTNS_booking">
+                                            <div id="close_time" class=" col-md-2 d-flex justify-content-center align-items-center">
+                                                <button type="button" name="close_time_BTN" class="btn btn-primary m-3"> بستن سانس </button>
+                                            </div>
+                                            <div id="open_time" class=" col-md-2 d-flex justify-content-center align-items-center">
+                                                <button type="button" name="open_time_BTN" class="btn btn-primary m-3"> بازکردن سانس </button>
+                                            </div>
+                                            <div id="sold_time" class=" col-md-2 d-flex justify-content-center align-items-center">
+                                                <button type="button" name="sold_time_BTN" class="btn btn-primary m-3"> فروختن سانس </button>
+                                            </div>
+                                            <div id="buy_time" class=" col-md-2 d-flex justify-content-center align-items-center">
+                                                <button type="button" name="buy_time_BTN" class="btn btn-primary m-3"> خریدن سانس </button>
+                                            </div>
+                                            <div id="close_day" class=" col-md-2 d-flex justify-content-center align-items-center">
+                                                <button type="button" name="close_day_BTN" class="btn btn-primary m-3"> بستن روز </button>
+                                            </div>
+                                            <div id="open_day" class=" col-md-2 d-flex justify-content-center align-items-center">
+                                                <button type="button" name="open_day_BTN" class="btn btn-primary m-3"> بازکردن روز </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block meta_title %}
+    مدیریت سانس ها
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+<link href="{% static 'assets/css/booking.css' %}" rel="stylesheet" type="text/css" />
+
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.css'%}"></script>
+
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/tagInput/tags-input.css'%}"></script>
+<style>
+    .tags-input-wrapper input { margin: 0 auto; }
+</style>
+
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/elements/alert.css'%}" />
+<style>
+    .btn-light { border-color: transparent; }
+</style>
+{% endblock links %}
+
+  
+{% block scripts %}
+
+<script src="{% static 'assets/js/booking.js' %}"></script>
+
+<script>
+    
+    let options_datepicker = {
+        placeholder : 'تاریخ ...',
+        markToday : true,
+        markHolidays : true,
+        disableHolidays : true,
+        highlightSelectedDay : true,
+        sync : true
+    }
+    kamaDatepicker('booking-date', options_datepicker);
+
+    
+
+</script>
+
+<script src="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.js'%}"></script>
+
+<script src="{% static 'dashboard/plugins/tagInput/tags-input.js'%}"></script>
+   
+{% endblock scripts %}

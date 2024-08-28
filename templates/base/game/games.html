@@ -1,0 +1,503 @@
+{% extends 'base/masterpage.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<section class="my-14 mt-4 px-4 text-white">
+    <div class="container mx-auto max-w-screen-xl">
+      
+      <div class="bg-green p-4 rounded-3xl mb-4 flex items-center justify-between">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li><a href="/">خانه</a></li> 
+            <li>بازی ها</li>
+          </ul>
+        </div>
+        <div class="w-2/12 bg-red-800">
+            
+        </div>
+        <div class="lg:hidden leading-none z-10 ">
+          <div class="drawer ">
+              <input id="filter_games" type="checkbox" class="drawer-toggle" />
+              <div class="drawer-content">
+                  <label for="filter_games" class="swap swap-rotate drawer-button">
+        
+                    <!-- this hidden checkbox controls the state -->
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"  xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <path d="M22 7.25H16C15.59 7.25 15.25 6.91 15.25 6.5C15.25 6.09 15.59 5.75 16 5.75H22C22.41 5.75 22.75 6.09 22.75 6.5C22.75 6.91 22.41 7.25 22 7.25Z" fill="#9Ec8b9"></path>
+                      <path d="M6 7.25H2C1.59 7.25 1.25 6.91 1.25 6.5C1.25 6.09 1.59 5.75 2 5.75H6C6.41 5.75 6.75 6.09 6.75 6.5C6.75 6.91 6.41 7.25 6 7.25Z" fill="#9Ec8b9"></path>
+                      <path d="M10 10.75C7.66 10.75 5.75 8.84 5.75 6.5C5.75 4.16 7.66 2.25 10 2.25C12.34 2.25 14.25 4.16 14.25 6.5C14.25 8.84 12.34 10.75 10 10.75ZM10 3.75C8.48 3.75 7.25 4.98 7.25 6.5C7.25 8.02 8.48 9.25 10 9.25C11.52 9.25 12.75 8.02 12.75 6.5C12.75 4.98 11.52 3.75 10 3.75Z" fill="#9Ec8b9"></path>
+                      <path d="M22 18.25H18C17.59 18.25 17.25 17.91 17.25 17.5C17.25 17.09 17.59 16.75 18 16.75H22C22.41 16.75 22.75 17.09 22.75 17.5C22.75 17.91 22.41 18.25 22 18.25Z" fill="#9Ec8b9"></path>
+                      <path d="M8 18.25H2C1.59 18.25 1.25 17.91 1.25 17.5C1.25 17.09 1.59 16.75 2 16.75H8C8.41 16.75 8.75 17.09 8.75 17.5C8.75 17.91 8.41 18.25 8 18.25Z" fill="#9Ec8b9"></path>
+                      <path d="M14 21.75C11.66 21.75 9.75 19.84 9.75 17.5C9.75 15.16 11.66 13.25 14 13.25C16.34 13.25 18.25 15.16 18.25 17.5C18.25 19.84 16.34 21.75 14 21.75ZM14 14.75C12.48 14.75 11.25 15.98 11.25 17.5C11.25 19.02 12.48 20.25 14 20.25C15.52 20.25 16.75 19.02 16.75 17.5C16.75 15.98 15.52 14.75 14 14.75Z" fill="#9Ec8b9"></path>
+                    </svg>
+                      
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-black swap-on fill-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      
+                  </label> 
+                </div> 
+                <div class="drawer-side ">
+                  <label for="filter_games" class="drawer-overlay"></label>
+                  <ul class="menu p-4 w-80 min-h-screen text-base-content bg-[#1b4242] flex-nowrap">
+                    <div class="drawer-content text-left text-black">
+                      <label for="filter_games" class="swap swap-rotate drawer-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </label> 
+                    </div> 
+                    <div class="h-full">
+                      <li class="">
+                        <details open class="marker::text-black ">
+                          <summary style="color: #fff;" class="hover:bg-[#183838]"> نوع </summary>
+                          <ul>
+                            <li>
+                              <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                                <input checked id="teal-checkbox" type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> اتاق فرار </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> سینما ترس </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> رویداد </label>
+                              </div>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li class="">
+                        <details class="marker::text-black">
+                          <summary style="color: #fff;" class="hover:bg-[#183838]"> ژانر </summary>
+                          <ul>
+                            {% for genre in genres %}
+                              <li>
+                                <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                                  <input id="teal-checkbox"  type="checkbox" value="{{genre.fa_name}}" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                  <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> {{genre.fa_name}} </label>
+                                </div>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </details>
+                      </li>
+                      <li class="">
+                        <details class="marker::text-black">
+                          <summary style="color: #fff;" class="hover:bg-[#183838]"> سانس </summary>
+                          <ul>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox" type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> تئاتر تعاملی </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> ترسناک </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> دلهره آور </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> معمایی </label>
+                              </div>
+                            </li>
+                            
+                           
+                          </ul>
+                        </details>
+                      </li>
+                      <li class="">
+                        <details class="marker::text-black">
+                          <summary style="color: #fff;" class="hover:bg-[#183838]"> قیمت </summary>
+                          <ul>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> تئاتر تعاملی </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> ترسناک </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> دلهره آور </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> معمایی </label>
+                              </div>
+                            </li>
+                            
+                           
+                          </ul>
+                        </details>
+                      </li>
+                      <li class="">
+                        <details class="marker::text-black">
+                          <summary style="color: #fff;" class="hover:bg-[#183838]"> قیمت </summary>
+                          <ul>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> تئاتر تعاملی </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> ترسناک </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> دلهره آور </label>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="flex items-center justify-start mr-3">
+                                <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> معمایی </label>
+                              </div>
+                            </li>
+                            
+                           
+                          </ul>
+                        </details>
+                      </li>
+                      <label class="flex items-center cursor-pointer justify-between mt-4 px-2 py-1 rounded-lg hover:bg-[#183838]">
+                        <input type="checkbox" value="" class="sr-only peer">
+                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">تخفیف بیشتر</span>
+                        <div class="relative w-11 h-6 bg-gray-600 rounded-full peer dark:bg-gray-600 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
+                      </label>
+                    </div>
+                  </ul>
+                </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="grid grid-cols-12 gap-4">
+
+          <div class="col-span-12 lg:col-span-3 order-2 lg:order-1 media_none_lg">
+
+            <div class="bg-teal rounded-3xl mb-4 p-4 ">
+              <div class="flex justify-center">
+                <h3 class="font-YekanBakh-ExtraBold text-base"> فیلتر کن </h3>
+              </div>
+              <div class="flex flex-col items-end mt-4">
+                <a href="" class="text-darkorange text-sm ">حذف فیلترها</a>
+                <a href="" class=" text-sm ">اعمال فیلترها</a>
+              </div>
+              <div class="my-4">
+                <ul class="menu">
+                  <li class="">
+                    <details open class="marker::text-black ">
+                      <summary style="color: #fff;" class="hover:bg-[#183838]"> نوع </summary>
+                      <ul>
+                        <li>
+                          <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                            <input checked id="teal-checkbox" type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> اتاق فرار </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> سینما ترس </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> رویداد </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li class="">
+                    <details class="marker::text-black">
+                      <summary style="color: #fff;" class="hover:bg-[#183838]"> ژانر </summary>
+                      <ul>
+                        {% for genre in genres %}
+                          <li>
+                            <div class="flex items-center justify-start mr-3 hover:bg-[#183838]">
+                              <input id="teal-checkbox"  type="checkbox" value="{{genre.fa_name}}" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                              <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> {{genre.fa_name}} </label>
+                            </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </details>
+                  </li>
+                  <li class="">
+                    <details class="marker::text-black">
+                      <summary style="color: #fff;" class="hover:bg-[#183838]"> سانس </summary>
+                      <ul>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox" type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> تئاتر تعاملی </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> ترسناک </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> دلهره آور </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> معمایی </label>
+                          </div>
+                        </li>
+                        
+                       
+                      </ul>
+                    </details>
+                  </li>
+                  <li class="">
+                    <details class="marker::text-black">
+                      <summary style="color: #fff;" class="hover:bg-[#183838]"> قیمت </summary>
+                      <ul>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> تئاتر تعاملی </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> ترسناک </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> دلهره آور </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> معمایی </label>
+                          </div>
+                        </li>
+                        
+                       
+                      </ul>
+                    </details>
+                  </li>
+                  <li class="">
+                    <details class="marker::text-black">
+                      <summary style="color: #fff;" class="hover:bg-[#183838]"> قیمت </summary>
+                      <ul>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> تئاتر تعاملی </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> ترسناک </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> دلهره آور </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="flex items-center justify-start mr-3">
+                            <input id="teal-checkbox"  type="checkbox" value="" class="w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="teal-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> معمایی </label>
+                          </div>
+                        </li>
+                        
+                       
+                      </ul>
+                    </details>
+                  </li>
+                  <label class="inline-flex items-center cursor-pointer justify-between mt-4 px-2 py-1 rounded-lg hover:bg-[#183838]">
+                    <input type="checkbox" value="" class="sr-only peer">
+                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">تخفیف بیشتر</span>
+                    <div class="relative w-11 h-6 bg-gray-600 rounded-full peer dark:bg-gray-600 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
+                  </label>
+                </ul>
+              </div>
+            </div>
+
+            <div class=" rounded-3xl">
+              <img class="rounded-3xl w-full" src="{% static 'base/assets/images/games/10.webp' %}" alt="">
+            </div>
+
+          </div>
+          
+          <div class="col-span-12 lg:col-span-9 order-1 lg:order-2">
+
+              <div class="bg-teal rounded-3xl leading-10 md:hidden mb-2">
+                <a href="/{{game.brand.url}}/{{game.url}}/" class="flex flex-col items-center justify-center rounded-2xl">
+                    <img class=" rounded-2xl w-full h-full" src="{% static 'base/assets/images/games/10.webp' %}" alt="">
+                </a>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                
+                {% for game in games %}
+                    {% for game_det in games_det %}
+                        {% if game_det.game == game %}
+                            <div class="bg-teal rounded-3xl leading-10 p-4">
+                                <div class="flex flex-col justify-center items-center ">
+
+                                    <div class=" grid grid-cols-3 grid-rows-1 w-full gap-2 mb-2">
+
+                                        <div class="grid grid-col-1 grid-rows-3 place-items-center border border-lightgray rounded-lg text-darkgray">
+                                            <i class="fa-solid fa-lock fa-fw "></i>
+                                            <span class="text-xs"> سختی </span>
+                                            <span class="text-xs"><span> {{game_det.hardship}} از 10 </span>
+                                        </div>
+
+                                        <div class="grid grid-col-1 grid-rows-3 place-items-center border border-lightgray rounded-lg text-darkgray">
+                                            <i class="mt-2 fa-solid fa-users fa-fw "></i>
+                                            <span class="text-xs"> نفرات </span>
+                                            <span class="text-xs mb-2"><span> {{game_det.player_from}} تا {{game_det.player_to}} بازیکن </span>
+                                        </div>
+                                        
+                                        <div class="grid grid-col-1 grid-rows-3 place-items-center border border-lightgray rounded-lg text-darkgray ">
+                                            <i class="mt-2 fa-solid fa-clock fa-fw "></i>
+                                            <span class="text-xs"> زمان </span>
+                                            <span class="text-xs mb-2"><span> {{game_det.time}} دقیقه </span>
+                                        </div>
+                                    </div>
+
+                                    <a href="{% url 'game_details' game.brand.url game.url %}" class="flex flex-col items-center justify-center rounded-2xl">
+                                        <img class="mb-2 rounded-2xl height" src="/media/{{game.poster}}" alt=" اتاق فرار {{game.fa_name}}">
+                                    </a>
+                                </div>
+
+                                <div class="text-center px-4">
+                                     
+                                    <div class="flex justify-center gap-2 text-base mb-4 mt-[1px]">
+                                        <span class="text-white font-YekanBakh-Regular text-xs"> 
+                                          {% for genre in game_genres %}
+                                              {% if genre.game == game %}
+                                                  <a href="" class=" mx-[2px] bg-[#5c8374] p-1 rounded text-white hover:bg-[#092635]">{{genre.genre.fa_name}}</a>
+                                              {% endif %}
+                                          {% endfor %}
+                                        </span>
+                                    </div> 
+                                    <div class="flex justify-between gap-4 text-base mt-2 text-white">
+                                        <a href="{% url 'game_details' game.brand.url game.url %}"><h3 class="font-YekanBakh-Regular text-lg hover:text-[#5c8374]"> {{game.fa_name}} </h3></a>
+                                        <a href="{% url 'brand_details' game.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase hover:text-[#5c8374]"> {{game.brand.en_name}} </span></a>
+                                    </div>
+                                    <div class="flex justify-between gap-4 text-base mt-1">
+                                        <span class="text-white font-YekanBakh-Regular text-base"> 2 سانس خالی </span>
+                                        <span class="text-white font-YekanBakh-Regular text-base">{{game.price}} هزارتومان</span>
+                                    </div>  
+                                     
+                                    <div class="flex justify-center gap-2 items-center mt-1 ">
+                                        <div class="flex justify-center text-base mt-1 ">
+                                            <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center w-32 h-10 bg-[#5c8374] hover:bg-[#092635] text-white py-2 px-4 rounded-full"> اطلاعات بیشتر </a>
+                                        </div>
+                                    </div> 
+                                </div>
+
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+
+
+              </div>
+              <div class="flex justify-center mt-10">
+                <div class="join">
+                  {%if games.has_previous %}
+                    <a class="bg-teal text-white join-item btn border-0 hover:bg-[#092635]" href="?page={{games.previous_page_number}}">«</a> {# link to the prev page #}
+                  {% endif %}
+                  {% if games.number %}
+                    <span class="bg-teal text-white join-item btn border-0 hover:bg-[#1b4242]  mx-2 ">{{games.number}}</span> {# the current page number #}
+                  {% endif %}
+                  {%if games.has_next %}
+                    <a class="bg-teal text-white join-item btn border-0 hover:bg-[#092635]" href="?page={{games.next_page_number}}">»</a> {# link to the next page #}
+                  {% endif %}
+                </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block meta_title %}
+    site | {{brand.en_name}}
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+<style>
+  .example::-webkit-scrollbar{
+    display: none;
+  }
+  .example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  overflow-y: scroll;
+}
+</style>
+{% endblock links %}
+
+{% block scripts %}
+
+{% endblock scripts %}

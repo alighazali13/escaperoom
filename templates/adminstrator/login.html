@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title> ورود ادمین ها </title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="{% static 'dashboard/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/assets/css/plugins.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/assets/css/authentication/form-1.css'%}" rel="stylesheet" type="text/css" />
+    
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link href="{% static 'dashboard/assets/css/forms/theme-checkbox-radio.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/assets/css/forms/switches.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/assets/css/scrollspyNav.css'%}" rel="stylesheet" type="text/css" />
+
+    <link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/elements/alert.css'%}" />
+    <style>
+        .btn-light { border-color: transparent; }
+    </style>
+</head>
+<body class="form" style="overflow: hidden;">
+    <div id="custom_alert" class="w-100 mt-5 pr-5 pl-5 d-none">
+        <div class="alert alert-danger mb-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close" data-dismiss="alert"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <strong>خطا!</strong> <span id="msg"></span> </div>
+    </div>
+    <div class="form-container d-flex justify-content-center">
+        <div class="form-form">
+            <div class="form-form-wrap">
+                <div class="form-container">
+                    <div class="form-content">
+                        <div id='form' class="text-center">
+                            {% csrf_token %}
+                            <div id="pn">
+                                <div class="form-group">
+                                    <input autocomplete="off" id="tel" type="tel" name="tel" placeholder=" شماره تلفن بدون صفر ابتدا " class="form-control" required>
+                                </div>
+                                <div class="form-group d-flex justify-content-center">
+                                    <button id="reqlogin_code_BTN" type="submit" name="reqlogin_code_BTN" class="btn btn-primary">درخواست کد</button>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="{% static 'dashboard/assets/js/libs/jquery-3.1.1.min.js'%}"></script>
+    <script src="{% static 'dashboard/bootstrap/js/popper.min.js'%}"></script>
+    <script src="{% static 'dashboard/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'dashboard/plugins/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/app.js'%}"></script>
+    
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="{% static 'dashboard/assets/js/authentication/form-1.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/scrollspyNav.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/custom.js'%}"></script>
+
+    <script src="{% static 'dashboard/assets/js/ajax/login.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/custom/ajaxsetup.js'%}"></script>
+    <script>
+    
+        
+    </script>
+
+</body>
+</html>

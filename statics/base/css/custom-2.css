@@ -1,0 +1,32 @@
+.bg-green{
+    background-color: #4B5320;
+}
+.text-green{
+    color: #4B5320;
+}
+
+.bg-orange{
+    background-color: #215454 ;
+}
+.text-orange{
+    color: #ef7417 ;
+}
+
+.bg-darkorange{
+    background-color: #402154;
+}
+
+.bg-darkgray{
+    background-color: #D4D0BC;
+}
+.text-darkgray{
+    color: #666865;
+}
+
+.bg-lightgray{
+    background-color: rgb(39, 100, 100)
+}
+
+.text-lightgray{
+    color: #838581;
+}

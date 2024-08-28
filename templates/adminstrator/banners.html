@@ -1,0 +1,421 @@
+{% extends base_template %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+
+        <div class="row layout-top-spacing">
+
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="row">
+
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow ">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12 d-flex">
+                                            <div class="col-md-6">
+                                                <h4> بنر تبلیغاتی در هدر </h4>
+                                            </div>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4 d-flex justify-content-between">
+                                    <div class="widget-content widget-content-area col-md-6 p-4">
+                                        <form enctype="multipart/form-data" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-6">
+                                                    <label for="fa_name"> نام </label>
+                                                    {{banner_headerform.name}}
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="en_name"> آدرس </label>
+                                                    {{banner_headerform.url}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-12">
+                                                    <label for="en_name"> عکس اسلایدر </label>
+                                                    {{banner_headerform.slide}}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12 d-flex justify-content-center">
+                                                <button type="submit" name="add_banner_header_BTN" class="btn btn-primary mt-3">ساختن</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="widget-content widget-content-area col-md-6 p-4 br-6">
+                                        <div class="table-responsive mb-4 mt-4">
+                                            <table id="banner_header_dt" class="table table-hover" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="checkbox-column"> شناسه </th>
+                                                        <th> نام </th>
+                                                        <th> URL </th>
+                                                        <th> اسلاید </th>
+                                                        <th> عمل </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for banner in banner_header %}
+                                                        <tr>
+                                                            <td class="checkbox-column">{{banner.id}}</td>
+                                                            <td> {{banner.name}} </td>
+                                                            <td><a href="#" class="a_hover"> {{banner.url}} </a></td>
+                                                            <td> <img height="30px" width="50px" src="/media/{{banner.slide}}"></td>
+                                                            <td> 
+                                                                <ul class="list-unstyled d-flex">
+                                                                    <li><a href="#" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="ویرایش"><i class="fa-solid fa-pencil fa-fw"></i></a></li>   
+                                                                    <li><a href="#" class="danger_hover pl-2 bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><i class="fa-solid fa-trash-can fa-fw"></i></a></li>   
+                                                                </ul>    
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow ">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12 d-flex">
+                                            <div class="col-md-6">
+                                                <h4> اسلایدر در هدر </h4>
+                                            </div>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4 d-flex justify-content-between">
+                                    <div class="widget-content widget-content-area col-md-6 p-4">
+                                        <form enctype="multipart/form-data" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-6">
+                                                    <label for="fa_name"> نام </label>
+                                                    {{sliders_form.name}}
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="en_name"> آدرس </label>
+                                                    {{sliders_form.url}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-12">
+                                                    <label for="en_name"> عکس اسلایدر </label>
+                                                    {{sliders_form.slide}}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12 d-flex justify-content-center">
+                                                <button type="submit" name="add_header_slider_BTN" class="btn btn-primary mt-3">ساختن</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="widget-content widget-content-area col-md-6 p-4 br-6">
+                                        <div class="table-responsive mb-4 mt-4">
+                                            <table id="sliders_dt" class="table table-hover" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="checkbox-column"> شناسه </th>
+                                                        <th> نام </th>
+                                                        <th> URL </th>
+                                                        <th> اسلاید </th>
+                                                        <th> عمل </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for slide in header_slider %}
+                                                        <tr>
+                                                            <td class="checkbox-column">{{slide.id}}</td>
+                                                            <td> {{slide.name}} </td>
+                                                            <td><a href="#" class="a_hover"> {{slide.url}} </a></td>
+                                                            <td> <img height="30px" width="50px" src="/media/{{slide.slide}}"></td>
+                                                            <td> 
+                                                                <ul class="list-unstyled d-flex">
+                                                                    <li><a href="#" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="ویرایش"><i class="fa-solid fa-pencil fa-fw"></i></a></li>   
+                                                                    <li><a href="#" class="danger_hover pl-2 bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><i class="fa-solid fa-trash-can fa-fw"></i></a></li>   
+                                                                </ul>    
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow ">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12 d-flex">
+                                            <div class="col-md-6">
+                                                <h4> بنر تبلیغاتی  </h4>
+                                            </div>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4 d-flex justify-content-between">
+                                    <div class="widget-content widget-content-area col-md-6 p-4">
+                                        <form enctype="multipart/form-data" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-4">
+                                                    <label for="fa_name"> نام </label>
+                                                    {{adv_banner_form.adv_banner_name}}
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="en_name"> آدرس </label>
+                                                    {{adv_banner_form.adv_banner_url}}
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="number"> محل قرارگیری <small style="font-size: 12px; color: rgba(255, 255, 255, 0.473);">(در هر محل فقط یک بنر)</small> </label>
+                                                    <select name="number" class="selectpicker form-control" title=" محل قرارگیری بنر " required>
+                                                        <option value="0">بالایی</option>
+                                                        <option value="1">پایینی</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-12">
+                                                    <label for="en_name"> عکس اسلایدر </label>
+                                                    {{adv_banner_form.adv_banner_slide}}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12 d-flex justify-content-center">
+                                                <button type="submit" name="add_adv_banner_BTN" class="btn btn-primary mt-3">ساختن</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="widget-content widget-content-area col-md-6 p-4 br-6">
+                                        <div class="table-responsive mb-4 mt-4">
+                                            <table id="adv_banner_dt" class="table table-hover" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="checkbox-column"> شناسه </th>
+                                                        <th> نام </th>
+                                                        <th> URL </th>
+                                                        <th> محل قرارگیری </th>
+                                                        <th> اسلاید </th>
+                                                        <th> عمل </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for slide in adv_banner %}
+                                                        <tr>
+                                                            <td class="checkbox-column">{{slide.id}}</td>
+                                                            <td> {{slide.adv_banner_name}} </td>
+                                                            <td><a href="#" class="a_hover"> {{slide.adv_banner_url}} </a></td>
+                                                            <td>
+                                                                {% if slide.number == 0 %}
+                                                                    بنر بالایی
+                                                                {% endif %}
+                                                                {% if slide.number == 1 %}
+                                                                    بنر پایینی
+                                                                {% endif %}
+                                                            </td>
+                                                            <td> <img height="30px" width="50px" src="/media/{{slide.adv_banner_slide}}"></td>
+                                                            <td> 
+                                                                <ul class="list-unstyled d-flex">
+                                                                    <li><a href="#" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="ویرایش"><i class="fa-solid fa-pencil fa-fw"></i></a></li>   
+                                                                    <li><a href="#" class="danger_hover pl-2 bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><i class="fa-solid fa-trash-can fa-fw"></i></a></li>   
+                                                                </ul>    
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow ">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12 d-flex">
+                                            <div class="col-md-6">
+                                                <h4> اسلاید تبلیغاتی </h4>
+                                            </div>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4 d-flex justify-content-between">
+                                    <div class="widget-content widget-content-area col-md-6 p-4">
+                                        <form enctype="multipart/form-data" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-6">
+                                                    <label for="fa_name"> نام </label>
+                                                    {{adv_slide_form.adv_slide_name}}
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="en_name"> آدرس </label>
+                                                    {{adv_slide_form.adv_slide_url}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-12">
+                                                    <label for="en_name"> عکس اسلایدر </label>
+                                                    {{adv_slide_form.adv_slide_slide}}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12 d-flex justify-content-center">
+                                                <button type="submit" name="add_adv_slide_BTN" class="btn btn-primary mt-3">ساختن</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="widget-content widget-content-area col-md-6 p-4 br-6">
+                                        <div class="table-responsive mb-4 mt-4">
+                                            <table id="adv_slide_dt" class="table table-hover" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="checkbox-column"> شناسه </th>
+                                                        <th> نام </th>
+                                                        <th> URL </th>
+                                                        <th> اسلاید </th>
+                                                        <th> عمل </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for slide in adv_slide %}
+                                                        <tr>
+                                                            <td class="checkbox-column">{{slide.id}}</td>
+                                                            <td> {{slide.adv_slide_name}} </td>
+                                                            <td><a href="#" class="a_hover"> {{slide.adv_slide_url}} </a></td>
+                                                            
+                                                            <td> <img height="30px" width="50px" src="/media/{{slide.adv_slide_slide}}"></td>
+                                                            <td> 
+                                                                <ul class="list-unstyled d-flex">
+                                                                    <li><a href="#" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="ویرایش"><i class="fa-solid fa-pencil fa-fw"></i></a></li>   
+                                                                    <li><a href="#" class="danger_hover pl-2 bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><i class="fa-solid fa-trash-can fa-fw"></i></a></li>   
+                                                                </ul>    
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+{% block meta_title %}
+    مدیریت ادمین ها
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/dropify/dropify.min.css'%}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/users/account-setting.css'%}"></script>
+    
+    <link href="{% static 'dashboard/assets/css/custom/hover.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css" />
+
+    <link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.css'%}"></script>
+{% endblock links %}
+
+{% block scripts %}
+<script src="{% static 'dashboard/plugins/dropify/dropify.min.js'%}"></script>
+<script src="{% static 'dashboard/plugins/blockui/jquery.blockUI.min.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/users/account-settings.js'%}"></script>
+
+<script src="{% static 'dashboard/plugins/table/datatable/datatables.js'%}"></script>
+
+<script>        
+    $('#banner_header_dt').DataTable( {
+        "oLanguage": {
+            "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>' },
+            "sInfo": "صفحه _PAGE_ از _PAGES_",
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "جستجو کنید...",
+           "sLengthMenu": "نتایج :  _MENU_",
+        },
+        "order": [[ 3, "desc" ]],
+        "stripeClasses": [],
+        "lengthMenu": [7, 10, 20, 50],
+        "pageLength": 7,
+        drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
+    } );           
+    $('#sliders_dt').DataTable( {
+        "oLanguage": {
+            "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>' },
+            "sInfo": "صفحه _PAGE_ از _PAGES_",
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "جستجو کنید...",
+           "sLengthMenu": "نتایج :  _MENU_",
+        },
+        "order": [[ 3, "desc" ]],
+        "stripeClasses": [],
+        "lengthMenu": [7, 10, 20, 50],
+        "pageLength": 7,
+        drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
+    } );     
+    $('#adv_banner_dt').DataTable( {
+        "oLanguage": {
+            "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>' },
+            "sInfo": "صفحه _PAGE_ از _PAGES_",
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "جستجو کنید...",
+           "sLengthMenu": "نتایج :  _MENU_",
+        },
+        "order": [[ 3, "desc" ]],
+        "stripeClasses": [],
+        "lengthMenu": [7, 10, 20, 50],
+        "pageLength": 7,
+        drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
+    } );  
+    $('#adv_slide_dt').DataTable( {
+        "oLanguage": {
+            "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>' },
+            "sInfo": "صفحه _PAGE_ از _PAGES_",
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "جستجو کنید...",
+           "sLengthMenu": "نتایج :  _MENU_",
+        },
+        "order": [[ 3, "desc" ]],
+        "stripeClasses": [],
+        "lengthMenu": [7, 10, 20, 50],
+        "pageLength": 7,
+        drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
+    } );
+</script>
+
+<script src="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.js'%}"></script>
+
+{% endblock scripts %}

@@ -1,0 +1,391 @@
+{% extends 'base/masterpage.html' %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+    {% if slides_status == 200 %}
+        <section class="px-4 mt-3">
+            <div class="container mx-auto max-w-screen-xl">
+                <div class="swiper main-slider">  
+                    <div class="swiper-wrapper">
+                        {% for slide in slides %}
+                            <div class="swiper-slide">
+                                <a href=""><img class="object-cover rounded-b-3xl w-full" src="/media/{{slide.slide}}" alt="{{slide.name}}"></a>
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if two_day_status == 200 %}
+        <section class="my-14">
+            <div class="container mx-auto max-w-screen-xl">
+                <div class="bg-green dirounded full-x rounded-3xl pt-10 pb-4" >
+                    <div class=" mb-8 text-right pr-6">
+                        <h2 class="font-YekanBakh-Bold text-3xl text-darkgray">دو روز بعد </h2>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 p-4">
+                        <div class="col-span-12 lg:col-span-9">
+                            <div class="swiper off-product">
+                                <div class="swiper-wrapper">
+
+                                    {% for game in two_day_games %}
+                                        <div class="swiper-slide">
+                                            <div class="bg-lightgray rounded-3xl leading-10 p-4 media_card">
+                                                <div class="relative">
+                                                    
+                                                    <a href="{% url 'game_details' game.game.brand.url game.game.url %}" class="flex flex-col items-center justify-center">
+                                                        <img class="mb-4 rounded-3xl height" src="/media/{{game.game.poster}}" alt="">
+                                                    </a>
+                                                    <div class="bg-lightgray absolute top-2 right-2 rounded-full w-10 h-10">
+                                                        <p class="flex items-center justify-center">30%</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center px-3 media_text_card sm:px-2">
+                                                    <div class="flex justify-center gap-2 text-base mb-4 mt-[1px]">
+                                                        <span class="font-YekanBakh-Regular text-xs">
+                                                            {% for genre in game_genres %}
+                                                                {% if genre.game == game.game %}
+                                                                    <a href="" class=" mx-[2px] bg-[#092635] p-1 rounded text-white hover:bg-[#1b4242]">{{genre.genre.fa_name}}</a>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </span>
+                                                    </div> 
+                                                    <div class="flex justify-between gap-4 text-base mt-4 text-white media_text_card">
+                                                        <a href="{% url 'game_details' game.game.brand.url game.game.url %}"><h3 class="font-YekanBakh-Regular text-lg hover:text-[#092635]"> {{game.game.fa_name}} </h3></a>
+                                                        <a href="{% url 'brand_details' game.game.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase media_none hover:text-[#092635]"> {{game.game.brand.en_name}} </span></a>
+                                                    </div>
+                                                    <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
+                                                        <span class="text-white font-YekanBakh-Regular text-base"> 2 سانس خالی </span>
+                                                        <span class="text-white font-YekanBakh-Regular text-base">{{game.game.price}} هزار تومان</span>
+                                                    </div>  
+                                                    <div class="flex justify-center gap-2 items-center mt-4 media_none">
+                                                        <div class="flex justify-center text-base mt-4 ">
+                                                            <a href="{% url 'game_details' game.game.brand.url game.game.url %}" class="text-center w-32 h-10 bg-[#092635] hover:bg-[#1b4242] text-white py-2 px-4 rounded-full"> اطلاعات بیشتر </a>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="hidden lg:block lg:col-span-3">
+                            <input type="hidden" id="dtl" value="{{time_left}}">
+                            <div class=" rounded-3xl p-4 " style="background-color: #911616;">
+                                <div class="flex flex-col leading-8 ">
+                                    <p class=" text-center text-xl font-YekanBakh-Bold text-white"> با رزرو کردن بازی های دو روز بعد تخفیف <span style="font-size: 2rem; color: #fdea3c;">بیشتر</span> بگیر :)</p>
+                                    <div class="flex justify-center my-16">
+                                        <img class="w-48 h-60" src="{% static 'base/assets/images/off.png' %}" alt="">
+                                    </div>
+
+                                    <div class="grid grid-cols-4 gap-2 leading-4 mt-1">
+                                        <div class="bg-green flex flex-col text-center text-white px-2 py-4 rounded-2xl">
+                                            <span class="countdown font-YekanBakh-SemiBold text-3xl">
+                                                <span id="counterseconds"></span>
+                                            </span>
+                                            ثانیه
+                                        </div> 
+                                        <div class="bg-green flex flex-col text-center text-white px-2 py-4 rounded-2xl">
+                                            <span class="countdown font-YekanBakh-SemiBold text-3xl">
+                                                <span id="counterminutes"></span>
+                                            </span>
+                                            دقیقه
+                                        </div> 
+                                        <div class="bg-green flex flex-col text-center text-white px-2 py-4 rounded-2xl">
+                                            <span class="countdown font-YekanBakh-SemiBold text-3xl">
+                                                <span id="counterhours"></span>
+                                            </span>
+                                            ساعت
+                                        </div> 
+                                        <div class="bg-green flex flex-col text-center text-white px-2 py-4 rounded-2xl">
+                                            <span class="countdown font-YekanBakh-SemiBold text-3xl">
+                                                <span style="--value:0;"></span>
+                                            </span>
+                                            روز
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if adv_banner_top_status == 200 %}
+        <section class="my-14 px-4">
+            <div class="container mx-auto max-w-screen-xl">
+                <a href="{{adv_top_banner.adv_banner_url}}"><img class="object-cover rounded-3xl w-full" src="/media/{{adv_top_banner.adv_banner_slide}}" alt="{{adv_top_banner.adv_banner_name}}"></a>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if games_status == 200 %}
+        <section class="my-14 px-4">
+            <div class="container mx-auto max-w-screen-xl">
+                <div class="text-right mb-8 flex flex-row justify-between items-center">
+                    <h2 class="font-YekanBakh-Bold text-2xl text-green "> سانس خالی </h2>
+                    <a href="" class="font-YekanBakh-Regular text-xs text-white  ml-5"> مشاهده همه >> </a>
+                </div>
+                <div class="swiper slider-product1">
+                        <div class="swiper-wrapper">
+                            {% for game in games %}
+                                <div class="swiper-slide">
+                                    <div class="bg-green rounded-3xl leading-10 p-4 media_card">
+                                        <div class="relative">
+                                            <a href="{% url 'game_details' game.brand.url game.url %}" class="flex flex-col items-center justify-center">
+                                                <img class="mb-4 rounded-3xl height" src="/media/{{game.poster}}" alt=" اتاق فرار {{game.fa_name}}">
+                                            </a>
+                                        </div>
+                                        <div class="text-center px-3 media_text_card sm:px-2">
+                                            <div class="flex justify-center gap-2 text-base mb-4 mt-[1px]">
+                                                <span class="text-white font-YekanBakh-SemiBold text-xs">
+                                                    {% for genre in game_genres %}
+                                                        {% if genre.game == game %}
+                                                            <a href="" class="mx-[2px] bg-[#5c8374] p-1 rounded text-white hover:bg-[#1b4242]">{{genre.genre.fa_name}}</a>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            </div> 
+                                            <div class="flex justify-between gap-4 text-base mt-4 text-white media_text_card">
+                                                <a href="{% url 'game_details' game.brand.url game.url %}"><h3 class="font-YekanBakh-Regular text-lg hover:text-[#5c8374]"> {{game.fa_name}} </h3></a>
+                                                <a href="{% url 'brand_details' game.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase media_none hover:text-[#5c8374]"> {{game.brand.en_name}} </span></a>
+                                            </div>
+                                            <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
+                                                <span class="text-white font-YekanBakh-Regular text-base">دو سانس</span>
+                                                <span class="text-white font-YekanBakh-Regular text-base"> {{game.price}} هزار تومان</span>
+                                            </div>  
+                                            <div class="flex justify-center gap-2 items-center mt-4 media_none">
+                                                <div class="flex justify-center text-base mt-4 ">
+                                                    <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center w-32 h-10 bg-lightgray hover:bg-[#1b4242] text-white py-2 px-4 rounded-full"> اطلاعات بیشتر </a>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if adv_banner_bottom_status %}
+    
+        <section class="my-14 px-4">
+            <div class="container mx-auto max-w-screen-xl">
+                <a href="{{adv_bottom_banner.adv_banner_url}}/"><img class="object-cover rounded-3xl w-full" src="/media/{{adv_bottom_banner.adv_banner_slide}}" alt="{{adv_bottom_banner.adv_banner_name}}"></a>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if cinema_status == 200 %}
+        <section class="my-14">
+            <div class="full-x container mx-auto max-w-screen-xl">
+                <div class="bg-green dirounded full-x rounded-3xl pt-10 pb-4" >
+                    <div class=" mb-8 flex flex-row justify-between items-center p-4">
+                        <h2 class="font-YekanBakh-Bold text-2xl text-[#9Ec8b9] "> سینما ترس و رویدادها </h2>
+                        <a href="" class="font-YekanBakh-Regular text-xs text-white  ml-5"> مشاهده همه >> </a>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4 p-4">
+
+                        <div class="col-span-12 ">
+                            <div class="swiper cinema-product">
+                                <div class="swiper-wrapper flex items-center">
+
+                                    <div class="swiper-slide">
+                                        <div class=" rounded-3xl p-4 bg-green">
+                                            <div class="flex flex-col leading-8 ">
+                                                <p class=" text-center text-xl font-YekanBakh-Bold text-white"> نمیدونی <span class="text-darkorange" style="font-size: 1.7rem;">سینما ترس</span> چیه؟ </p>
+                                                <p class="text-xs leading-8">سینما ترس یا سینما وحشت به یک فضای اختصاصی گفته می‌شود که دکوراسیون آن با فضایی متناسب با فیلم‌های ترسناک طراحی شده است. همچنین برای افزودن و تحریک حس هیجان و وحشت، آکتورها و بازیگرهای حرفه‌ای نیز در آن نقش بازی می‌کنند. سینما ترس یک تفریح عالی برای گروه‌های دوستی است. برای رزرو بهترین سینما ترس ها، مراجعه به وبسایت تایم فورفان سریعترین راه است.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% for cinema in cinemas %}
+                                        <div class="swiper-slide">
+                                            <div class="bg-lightgray rounded-3xl leading-10 p-4 media_card">
+                                                <div class="relative">
+                                                    <a href="{% url 'game_details' cinema.brand.url cinema.url %}" class="flex flex-col items-center justify-center">
+                                                        <img class="mb-4 rounded-3xl height" src="/media/{{cinema.poster}}" alt="سنما ترس {{cinema.fa_name}}">
+                                                    </a>
+                                                </div>
+                                                <div class="text-center px-3 media_text_card sm:px-2">
+                                                    <div class="flex justify-center gap-2 text-base mb-4 mt-[1px]">
+                                                        <span class="text-white font-YekanBakh-SemiBold text-xs">
+                                                            {% for genre in game_genres %}
+                                                                {% if genre.game == cinema %}
+                                                                    <a href="" class="mx-[2px] bg-[#092635] p-1 rounded text-white hover:bg-[#1b4242]">{{genre.genre.fa_name}}</a>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </span>
+                                                    </div> 
+                                                    <div class="flex justify-between gap-4 text-base mt-4 text-white media_text_card">
+                                                        <a href="{% url 'game_details' cinema.brand.url cinema.url %}"><h3 class="font-YekanBakh-Regular text-lg hover:text-[#092635]"> {{cinema.fa_name}} </h3></a>
+                                                        <a href="{% url 'brand_details' cinema.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase media_none hover:text-[#092635]"> {{cinema.brand.en_name}} </span></a>
+                                                    </div>
+                                                    <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
+                                                        <span class="text-white font-YekanBakh-Regular text-base"> 3 سانس خالی </span>
+                                                        <span class="text-white font-YekanBakh-Regular text-base"> {{cinema.price}} هزار تومان </span>
+                                                    </div>  
+                                                    <div class="flex justify-center gap-2 items-center mt-4 media_none">
+                                                        <div class="flex justify-center text-base mt-4 ">
+                                                            <a href="{% url 'game_details' cinema.brand.url cinema.url %}" class="text-center w-32 h-10 bg-green hover:bg-[#1b4242] text-white py-2 px-4 rounded-full"> اطلاعات بیشتر </a>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if adv_slide_status == 200 %}
+        <section class="px-4">
+            <div class="container mx-auto max-w-screen-xl">
+                <div class="swiper main-slider">
+                    <div class="swiper-wrapper">
+                        {% for slide in adv_slides %}
+                            <div class="swiper-slide">
+                                <a href="{{adv_bottom_banner.adv_slide_url}}/"><img class="object-cover rounded-3xl w-full" src="/media/{{slide.adv_slide_slide}}" alt="{{slide.adv_slide_name}}"></a>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="my-16 ">
+        <div class="full-x dirounded container mx-auto max-w-screen-xl bg-green pt-10 p-4 pb-8 rounded-3xl">
+            <div class="full-x  text-right mb-8 flex flex-row justify-between items-center">
+                <h2 class="font-YekanBakh-Bold text-2xl text-darkgray pr-1"> بازی ها </h2>
+                <a href="/games" class="font-YekanBakh-Regular text-xs text-white  ml-5"> مشاهده همه >> </a>
+            </div>
+
+            <div class="swiper slider-product3 my-2 swiper_s_p3">
+                <div class="swiper-wrapper">
+                    {% for game in first_row %}
+                        <div class="swiper-slide">
+                            <a href="{% url 'game_details' game.brand.url game.url %}">
+                                <div class="bg-lightgray bg-opacity-50 rounded-3xl leading-10 relative p-0">
+                                    <div class="media_cart_s_p3 flex items-center justify-center">
+                                        <div class="mx-4">
+                                            <div class="flex flex-col text-center items-center justify-between gap-2 text-base my-3 text-white font-YekanBakh-SemiBold">
+                                                <span class="text-base md:text-base "> {{ game.fa_name }} </span>
+                                                <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center  w-20 h-7 bg-teal  hover:bg-[#092635] text-white  rounded-2xl" style="padding: 1px;"> بیشتر </a>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 pt-2 md:pb-2">
+                                            <a href="{% url 'game_details' game.brand.url game.url %}"> <img class="width_s_p3 rounded-xl" src="/media/{{game.poster}}" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="swiper slider-product3 my-2 swiper_s_p3">
+                <div class="swiper-wrapper">
+                    {% for game in second_row %}
+                        <div class="swiper-slide">
+                            <a href="{% url 'game_details' game.brand.url game.url %}">
+                                <div class="bg-lightgray bg-opacity-50 rounded-3xl leading-10 relative p-0">
+                                    <div class="media_cart_s_p3 flex items-center justify-center">
+                                        <div class="mx-4">
+                                            <div class="flex flex-col text-center items-center justify-between gap-2 text-base my-3 text-white font-YekanBakh-SemiBold">
+                                                <span class="text-base md:text-base "> {{ game.fa_name }} </span>
+                                                <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center  w-20 h-7 bg-teal  hover:bg-[#092635] text-white  rounded-2xl" style="padding: 1px;"> بیشتر </a>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 pt-2 md:pb-2">
+                                            <a href="{% url 'game_details' game.brand.url game.url %}"> <img class="width_s_p3 rounded-xl" src="/media/{{game.poster}}" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="swiper slider-product3 my-2 media_none">
+                <div class="swiper-wrapper">
+                    {% for game in third_row %}
+                        <div class="swiper-slide">
+                            <a href="{% url 'game_details' game.brand.url game.url %}">
+                                <div class="bg-lightgray bg-opacity-50 rounded-3xl leading-10 relative p-0">
+                                    <div class="media_cart_s_p3 flex items-center justify-center">
+                                        <div class="mx-4">
+                                            <div class="flex flex-col text-center items-center justify-between gap-2 text-base my-3 text-white font-YekanBakh-SemiBold">
+                                                <span class="text-base md:text-base "> {{ game.fa_name }} </span>
+                                                <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center  w-20 h-7 bg-teal  hover:bg-[#092635] text-white  rounded-2xl" style="padding: 1px;"> بیشتر </a>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 pt-2 md:pb-2">
+                                            <a href="{% url 'game_details' game.brand.url game.url %}"> <img class="width_s_p3 rounded-xl" src="/media/{{game.poster}}" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock content %}
+
+{% block meta_title %}
+    اتاق فرار
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+
+{% endblock links %}
+
+{% block scripts %}
+
+{% endblock scripts %}

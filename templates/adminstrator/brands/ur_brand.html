@@ -1,0 +1,113 @@
+{% extends base_template %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+
+
+
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+
+        <div class="row layout-top-spacing">
+        
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="row">
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4> فرم ساخت مجموعه جدید </h4>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="widget-content widget-content-area">
+                                    <form enctype="multipart/form-data" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-4">
+                                                <label for="fa_name"> نام فارسی مجموعه </label>
+                                                {{form.fa_name}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="en_name"> نام انگلیسی مجموعه </label>
+                                                {{form.en_name}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="en_name"> URL </label>
+                                                {{form.url}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="big_logo"> لوگوی بزرگ </label>
+                                                {{form.big_logo}}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="sm_logo"> لوگوی کوچک </label>
+                                                {{form.sm_logo}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12 pl-0 pr-0 mr-0 ml-0 mb-4">
+                                            <label for="inputAddress">توضیحات راجع به مجموعه</label>
+                                            {{form.media}}
+                                            {{form.descriptions}}
+                                        </div>
+                                        <div class="form-group col-md-12 d-flex justify-content-center">
+                                            <button type="submit" name="edit_brand_BTN" class="btn btn-primary mt-3">ساختن</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+
+{% endblock content %}
+
+{% block meta_title %}
+    اضافه کردن ادمین
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/dropify/dropify.min.css'%}"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/users/account-setting.css'%}"></script>
+
+{% endblock links %}
+
+{% block scripts %}
+<script src="{% static 'dashboard/plugins/dropify/dropify.min.js'%}"></script>
+<script src="{% static 'dashboard/plugins/blockui/jquery.blockUI.min.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/users/account-settings.js'%}"></script>
+<script src="{% static 'CKEditor/ckeditor.js'%}"></script>
+<script>
+    CKEDITOR.replace('ck')
+</script>
+<script>
+    ckfield = document.getElementsByClassName('django-ckeditor-widget')[0];
+    ckfield.classList.add('w-100')
+</script>
+<script>
+    let brand_big_logo=document.getElementById("id_big_logo");brand_big_logo.setAttribute('data-default-file','/media/{{brand.big_logo}}');$('#id_big_logo').on('change',function(event){const file=event.target.files[0];if(file&&file.type==='image/webp'){const reader=new FileReader();reader.onload=function(e){$('#image-preview').attr('src',e.target.result).show()};reader.readAsDataURL(file)}});let brand_sm_logo=document.getElementById("id_sm_logo");brand_sm_logo.setAttribute('data-default-file','/media/{{brand.sm_logo}}');$('#id_sm_logo').on('change',function(event){const file=event.target.files[0];if(file&&file.type==='image/webp'){const reader=new FileReader();reader.onload=function(e){$('#image-preview').attr('src',e.target.result).show()};reader.readAsDataURL(file)}})
+</script>
+
+{% endblock scripts %}

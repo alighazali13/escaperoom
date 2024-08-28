@@ -1,0 +1,331 @@
+{% extends 'base/masterpage.html' %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+
+<section class="mt-4 px-4">
+    <div class="container mx-auto max-w-screen-xl">
+      <div class="bg-green p-4 rounded-3xl mb-4">
+        <div class="text-sm breadcrumbs">
+          <ul>
+            <li><a href="/">خانه</a></li> 
+            <li><a href="{% url 'games' %}">بازی ها</a></li> 
+            <li><a href="{% url 'brand_details' game.brand.url %}">{{game.brand.fa_name}}</a></li>
+            <li>{{game.fa_name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class=" bg-teal p-4 rounded-3xl">
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-12 md:col-span-4">
+            <div  class="min-w-full min-h-full rounded-3xl flex justify-center items-center">
+              <div class="swiper-wrapper flex justify-center items-center">
+                <div class="p-4  flex justify-center items-center">
+                  <img class="rounded-xl cursor-pointer" src="/media/{{game.poster}}" />
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+
+          <div class="w-full h-full col-span-12 grid gap-1 md:hidden">
+
+            <div class="col-span-12 grid grid-cols-4 grid-rows-1 gap-1">
+
+              <div class="flex flex-col items-center justify-center border border-lightgray rounded-lg p-2 text-center">
+                <i class="fa-solid fa-child fa-fw text-xl text-darkgray"></i>
+                <span class="mt-2"> {{game_det.age}} + </span>                        
+              </div>
+
+              <div class="flex flex-col items-center justify-center border border-lightgray rounded-lg p-2 text-center">
+                <i class="fa-solid fa-dragon fa-fw text-xl text-darkgray"></i>
+                <span class="mt-2"> {{game_det.hardship}}/10 </span>                        
+              </div>
+
+              <div class="flex flex-col items-center justify-center border border-lightgray rounded-lg p-2 text-center">
+                <i class="fa-solid fa-users fa-fw text-xl text-darkgray"></i>
+                <span class="mt-2"> {{game_det.player_from}} تا {{game_det.player_to}} </span>                        
+              </div>
+
+              <div class="flex flex-col items-center justify-center border border-lightgray rounded-lg p-2 text-center">
+                <i class="fa-solid fa-clock fa-fw text-xl text-darkgray"></i>
+                <span class="mr-2">{{game_det.time}} دقیقه</span>                        
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-span-12 md:col-span-8">
+            <div class= "p-4">
+              <div class="bg-lightgray rounded-xl p-4 leading-8 flex justify-between items-center">
+                  <h1 class="font-YekanBakh-Regular text-3xl"> {{game.fa_name}} </h1>
+                  <a href="{% url 'brand_details' game.brand.url %}"><h2 class="font-YekanBakh-Regular text-xl uppercase hover:text-[#092635]"> {{game.brand.en_name}} </h1></a>
+              </div>
+              <div class="grid grid-cols-12 mt-4">
+
+                <div class="col-span-12 lg:col-span-8 ml-3 flex justify-between flex-col">
+                  <div>
+                    <div class="p-2 rounded-xl">
+                      <div class="flex sm:flex-row flex-col-reverse justify-between items-start sm:items-center gap-8">
+                        <h3 class="font-YekanBakh-Regular text-2xl"> سناریو بازی </h1>
+                        <div class="font-YekanBakh-Regular text-3xl flex gap-2"> 
+                          {% for genre in game_genres %}
+                            <a href="#"><h3 class="text-xs border-[1px] border-lightgray p-1 rounded bg-lightgray text-white hover:bg-[#092635] hover:border-[#092635]" >{{genre.genre.fa_name}}</h3></a>
+                          {% endfor %}  
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pt-2 pr-2 text-sm  leading-8">
+                        {{game.scenario | safe}}
+                    </div>
+                  </div>
+                  
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-base my-4">
+                    <div class=" flex flex-col gap-2">
+                      <span class="line-through">{{game.price|add:110}} هزار تومان</span>
+                      <span class="text-darkgray">{{game.price}} هزار تومان برای هر نفر</span>
+                    </div>
+                    <div class="flex justify-center items-center text-base">
+                      <a href="#" class="text-center w-24 h-10 bg-lightgray hover:bg-[#092635] hover:border-[#092635] text-white py-2 px-4 rounded-xl"> رزرو </a>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div class="hidden lg:block col-span-4">
+
+                  <div class="flex items-start border border-lightgray rounded-lg mb-2 p-2">
+                    <i class="fa-solid fa-child fa-fw text-xl text-darkgray"></i>
+                    <span class="mr-2">بالای {{game_det.age}} سال</span>                        
+                  </div>
+
+                  <div class="flex items-start border border-lightgray rounded-lg my-2 p-2">
+                    <i class="fa-solid fa-lock fa-fw  text-xl text-darkgray"></i>
+                    <span class="mr-2"> درجه سختی {{game_det.hardship}} از 10 </span>                        
+                  </div>
+
+                  <div class="flex items-start border border-lightgray rounded-lg my-2 p-2">
+                    <i class="fa-solid fa-users fa-fw text-xl text-darkgray"></i>
+                    <span class="mr-2">بین {{game_det.player_from}} تا {{game_det.player_to}} بازیکن</span>                        
+                  </div>
+
+                  <div class="flex items-start border border-lightgray rounded-lg my-2 p-2">
+                    <i class="fa-solid fa-clock fa-fw text-xl text-darkgray"></i>
+                    <span class="mr-2">{{game_det.time}} دقیقه زمان حل چالش</span>                        
+                  </div>
+
+                  <div class="flex items-start border border-lightgray rounded-lg my-2 p-2">
+                    <i class="fa-solid fa-heart-pulse fa-fw text-xl text-darkgray"></i>
+                    <span class="mr-2 text-sm">بازی برای افراد دارای بیماری قلبی و تنفسی ممنوع می باشد</span>                        
+                  </div>
+
+                  <div class="flex items-start border border-lightgray rounded-lg my-2 p-2">
+                    <i class="fa-solid fa-biohazard fa-fw text-xl text-darkgray"></i>
+                    <span class="mr-2 text-sm">ورود بازیکن با هر حالتی غیر از حالت طبیعی ممنوع می باشد</span>                        
+                  </div>
+
+                  <div class="flex items-start border border-lightgray rounded-lg my-2 p-2">
+                    <i class="fa-solid fa-map fa-fw text-xl text-darkgray"></i>
+                    <span class="mr-2 text-sm">
+                        {{game_det.full_address}}
+                    </span>                        
+                  </div>
+
+                </div>
+
+                
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="my-4 px-4">
+  <div class="container mx-auto max-w-screen-xl bg-teal rounded-3xl">
+    <div class="tab rounded-3xl p-8 pb-16 leading-8 mb-10 flex justify-start flex-col sm:flex-row text-base">
+      <button class="tablinks text-white font-YekanBakh-Regular py-2 px-4 mx-2 my-4 rounded-3xl hover:border-b-2 transition active" onclick="openpage(event, 'brief')"> توضیحات مجموعه </button>
+      <button class="tablinks text-white font-YekanBakh-Regular py-2 px-4 mx-2 my-4 rounded-3xl hover:border-b-2 transition " onclick="openpage(event, 'comments')"> نظرات </button>
+    </div>
+    <hr>
+
+    <div id="brief" class="bg-teal  rounded-3xl p-8 pt-0 leading-8 tabcontent w-full" style="display: block;">
+      <div class="grid grid-cols-12 ">
+        <div class="col-span-12  p-4">
+            <span class="text-lg text-[#9Ec8b9]"> قوانین بازی : </span>
+            <div class="pr-4 mb-4">{{game.roles | safe}}</div>
+            <span class="text-lg text-[#9Ec8b9]"> توضیحات : </span>
+            <div class="pr-4 mb-4">{{game.descriptions | safe}}</div>
+            <span class="text-lg text-[#9Ec8b9]"> توضیحات بازی : </span>
+            <div class="pr-4">{{game.unique_description  | safe}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="comments" class="bg-teal  rounded-3xl p-8 pt-0 leading-8 tabcontent w-full" style="display: none;">
+      <div class="grid grid-cols-12 ">
+
+        <div class="col-span-12 p-4">
+          {% if login_status == 200 %}
+          <p>شما با نام {{playerinfo_obj.first_name}} {{playerinfo_obj.last_name}} وارد شده اید!!</p>
+          <textarea class="textarea textarea-bordered w-full h-36 rounded-3xl bg-darkgray focus:text-black mt-4" placeholder="نظر خود را بنویسید..."></textarea>
+          <button class="flex justify-center items-center w-24 h-10 bg-[#9Ec8b9] hover:bg-slate-950 text-slate-950 hover:text-white py-2 px-4 rounded-xl">ارسال پیام</button>
+          {% endif %}
+          {% if login_status == 500 %}
+          <p>ابتدا وارد حساب خود شوید!!</p>
+          {% endif %}
+          
+        </div>
+        
+        <div class="col-span-12 p-4">
+          <p> نظرات کاربران </p>
+          {% for comment in comments %}
+            <div class="bordered w-full rounded-3xl bg-darkgray  mt-4 flex flex-col items-start p-4 ">
+                <div class="text-xs flex justify-between w-full">
+                  <span class="text-[#1b4242a1] px-1"> {{comment.created_at}} &#9679 {{comment.player_info.first_name}} </span>
+                  <div class="text-[#1b4242a1] hidden md:flex items-center justify-between w-12 border-[1px] rounded-3xl border-[#1b4242a1] px-1 ">
+                    <span class="text-xs mt-1"> {{comment.like}} </span>
+                    <a href="#"><i class="flex text-xs text-[#1b4242 hover:text-[#092635] fa-solid fa-thumbs-up fa-fw"></i></a>
+                  </div>
+                </div>
+                <p class="text-teal">
+                  {{comment.comment}}
+                </p>
+                {% for reply in replies %}
+                  {% if reply.game_comment == comment %}
+                    <div class="text-teal border-r-4 pr-2 mr-2 border-[#1b4242]">
+                      <p class="text-[#1b4242a1]">پاسخ مجموعه : </p>
+                      <p>{{reply.reply}}</p>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col-span-12 p-4">
+          <div class="join flex justify-center">
+            {%if comments.has_previous %}
+              <a class="bg-[#9Ec8b9] text-white join-item btn border-0 hover:bg-[#092635]" href="?page={{comments.previous_page_number}}">«</a> {# link to the prev page #}
+            {% endif %}
+            {% if comments.number %}
+              <span class="bg-[#9Ec8b9] text-white join-item btn border-0 hover:bg-[#1b4242]  mx-2 ">{{comments.number}}</span> {# the current page number #}
+            {% endif %}
+            {%if comments.has_next %}
+              <a class="bg-[#9Ec8b9] text-white join-item btn border-0 hover:bg-[#092635]" href="?page={{comments.next_page_number}}">»</a> {# link to the next page #}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+</section>
+
+<section class="my-14">
+    <div class="full-x container mx-auto max-w-screen-xl">
+      <div class="bg-teal dirounded full-x rounded-3xl pt-10 pb-4" >
+          <div class=" mb-8 text-center pr-6">
+            <h2 class="font-YekanBakh-Regular text-2xl sm:text-3xl text-darkgray uppercase"> بازی های مجموعه {{game.brand.en_name}} </h2>
+          </div>
+          <div class="grid grid-cols-12 gap-4 p-4">
+            <div class="col-span-12 ">
+              <div class="swiper cinema-product">
+                <div class="swiper-wrapper flex items-center">
+                    {% for game in othergames %}
+                      <div class="swiper-slide">
+                        <div class="bg-lightgray rounded-3xl leading-10 p-4 media_card">
+                        <div class="relative">
+                            <a href="{% url 'game_details' game.brand.url game.url %}" class="flex flex-col items-center justify-center">
+                              <img class="mb-4 mt-2 rounded-3xl height" src="/media/{{game.poster}}" alt="">
+                            </a>
+                        </div>
+                        <div class="text-center px-3 media_text_card sm:px-2">
+                          <div class="flex justify-between gap-4 text-base mt-4 text-white media_text_card">
+                            <a href="{% url 'game_details' game.brand.url game.url %}">
+                                <h3 class="hover:text-[#092635] font-YekanBakh-Regular text-lg"> 
+                                    {{game.fa_name}}
+                                </h3>
+                            </a>
+                            <span class="font-YekanBakh-Regular text-base uppercase media_none"> 
+                              {{game.game_type.fa_name}}
+                            </span>
+                          </div>
+                          <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
+                            <span class="text-orange font-YekanBakh-Regular text-base  line-through"> {{game.price|add:110}} هزار تومان </span>
+                            <span class="text-white font-YekanBakh-Regular text-base">{{game.price}} هزار تومان</span>
+                          </div>  
+                            <div class="flex justify-center gap-2 items-center mt-4 media_none">
+                              <div class="flex justify-center text-base mt-4 ">
+                                  <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center w-32 h-10 bg-green hover:bg-[#1b4242] text-white py-2 px-4 rounded-full"> اطلاعات بیشتر </a>
+                              </div>
+                            </div>  
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </div>
+              <div class="swiper-pagination"></div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock content %}
+
+{% block meta_title %}
+  {{game.brand.en_name}} | {{game.en_name}}
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+
+    <style>
+        button.active {
+            --tw-border-opacity:1;
+            border-color: #9Ec8b9;
+            border-bottom-width: 2px;
+            border-radius: 1.5rem;
+            color: #9Ec8b9;
+        }
+    </style>
+{% endblock links %}
+
+{% block scripts %}
+
+<script>
+    function openpage(evt, tab) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tab).style.display = "inline-block";
+      evt.currentTarget.className += " active";
+    }
+
+  </script>
+
+{% endblock scripts %}

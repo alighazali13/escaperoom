@@ -1,0 +1,207 @@
+{% extends base_template %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+
+
+
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+
+        <div class="row layout-top-spacing">
+        
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="row">
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4> فرم ساخت {{hobby_type}} جدید </h4>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="widget-content widget-content-area">
+                                    <form enctype="multipart/form-data" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" id="selectedinp" name="selectedinp" value="1">
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="big_logo"> پوستر بازی </label>
+                                                {{game_form.poster}}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="sm_logo"> تیزر بازی (میتواند خالی باشد) </label>
+                                                {{game_form.teaser}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-9">
+                                                <label for="big_logo"> آدرس کامل </label>
+                                                {{game_det_form.full_address}}
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="sm_logo"> آدرس کوتاه </label>
+                                                {{game_det_form.short_address}}
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-4">
+                                                <label for="fa_name"> نام فارسی بازی </label>
+                                                {{game_form.fa_name}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="fa_name"> نام انگلیسی بازی </label>
+                                                {{game_form.en_name}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="en_name"> URL </label>
+                                                {{game_form.url}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-3">
+                                                <label for="en_name"> نام مجموعه </label>
+                                                {{game_form.brand}}
+                                            </div>
+                                            <div class="form-group col-md-9">
+                                                <label for="sm_logo"> ژانر </label>
+                                                <select name="genres" class="selectpicker form-control" required data-size="5" multiple title=" ژانر ها را انتخاب کنید (میتوانید چند ژانر را انتخاب کنید ) " data-live-search="true">
+                                                    {% for genre in genres %}
+                                                        <option value="{{genre.id}}">{{genre.fa_name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-2">
+                                                <label for="fa_name"> قیمت </label>
+                                                {{game_form.price}}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="fa_name"> سن  </label>
+                                                {{game_det_form.age}}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="en_name"> سحتی </label>
+                                                {{game_det_form.hardship}}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="en_name"> از نفر </label>
+                                                {{game_det_form.player_from}}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="en_name"> تا نفر </label>
+                                                {{game_det_form.player_to}}
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="en_name"> زمان بازی </label>
+                                                {{game_det_form.time}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="fa_name"> قوانین بازی </label>
+                                                {{game_form.media}}
+                                                {{game_form.roles}}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="fa_name"> توضیجات بازی  </label>
+                                                {{game_form.media}}
+                                                {{game_form.descriptions}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="fa_name"> توضیحات منحصر به فرد بازی </label>
+                                                {{game_form.media}}
+                                                {{game_form.unique_description}}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="fa_name"> سناریو بازی  </label>
+                                                {{game_form.media}}
+                                                {{game_form.scenario}}
+                                            </div>
+                                        </div>
+                                        
+
+                                        <h6> سانس بندی </h6>
+                                        <div id="booking" class="col-xl-12 col-md-12 col-sm-12 col-12 mb-4">
+                                            
+                                            <div id="field_1" class="form-row mb-4 mt-4">
+                                                <div class="form-group col-md-4  d-flex align-items-center">
+                                                    <input id="from_1" name="from_1" type="text" class="form-control" placeholder="از ساعت" required>
+                                                </div>
+                                                <div class="form-group col-md-4 d-flex align-items-center">
+                                                    <input id="to_1" name="to_1" type="text" class="form-control" placeholder=" تا ساعت " required>
+                                                </div>
+                                                <div class="form-group col-md-1">
+                                                    <ul class="list-unstyled d-flex" style="font-size: 22px; margin: 0 auto;">
+                                                        <li onclick="addfield_booking(2)" id="plus_1" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="فیلد اضافه"><i class="fa-solid fa-circle-plus fa-fw"></i></li>   
+                                                        
+                                                    </ul>    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>  
+                                        <div class="form-group col-md-12 d-flex justify-content-center">
+                                            <button type="submit" name="add_hobby_BTN" class="btn btn-primary mt-3">ساختن</button>
+                                        </div>   
+                                        
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+
+{% endblock content %}
+
+{% block meta_title %}
+    اضافه کردن ادمین
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/dropify/dropify.min.css'%}"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/users/account-setting.css'%}"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.css'%}"></script>
+
+{% endblock links %}
+
+{% block scripts %}
+<script src="{% static 'dashboard/plugins/dropify/dropify.min.js'%}"></script>
+<script src="{% static 'dashboard/plugins/blockui/jquery.blockUI.min.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/users/account-settings.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/custom/field_mng.js'%}"></script>
+<script src="{% static 'CKEditor/ckeditor.js'%}"></script>
+<script>
+    CKEDITOR.replace('ck')
+</script>
+
+
+<script src="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.js'%}"></script>
+
+
+{% endblock scripts %}

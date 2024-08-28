@@ -1,0 +1,140 @@
+.bg-green{
+    background-color: #092635;
+}
+.text-green{
+    color: #092635;
+}
+
+.bg-teal{
+    background-color: #1b4242;
+}
+.text-teal{
+    color: #044040;
+}
+.border-teal{
+    border-color: #044040;
+}
+
+
+.bg-lightgray{
+    background-color: #5c8374;
+}
+.text-lightgray{
+    color: #5c8374;
+}
+.border-lightgray{
+    border-color: #5c8374;
+}
+
+
+.bg-darkgray{
+    background-color: #9Ec8b9;
+}
+.text-darkgray{
+    color: #9Ec8b9;
+}
+.text-darkgray{
+    border-color: #9Ec8b9;
+}
+
+.bg-orange{
+    background-color: #820300 ;
+}
+.text-orange{
+    color: #820300 ;
+}
+
+
+.bg-darkorange{
+    background-color: #B80000;
+}
+.text-darkorange{
+    color: #B80000;
+}
+
+
+
+.height{
+    height: 20rem;
+}
+
+.height_s_p1{
+    height: 20rem;
+}
+
+.width_s_p3{
+    height: 8rem;
+}
+
+.media_cart_s_p3{
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 1024px) {
+    .media_none_lg{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .full-x{
+        min-width: 100% !important;
+    }
+    .dirounded{
+        border-radius: 0% !important;
+    }
+    .height{
+        height: 17rem !important;
+    }
+    .media_card{
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        padding-bottom: 0.4rem;
+        padding-top: 0.7rem;
+        
+    }
+    .media_text_card{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1rem;
+        gap: 0;
+        margin-top: 0;
+    }
+    .media_none{
+        display: none;
+    }
+
+    .height_s_p1{
+        height: 9rem;
+    }
+
+    .media_card_s_p1{
+        padding: 0.5rem;
+    }
+
+    .media_text_card_s_p1{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+        padding-right: 0.4rem;
+        gap: 0;
+    }
+    .media_mb2{
+        padding-bottom: 2rem;
+    }
+
+    .swiper_s_p3{
+        margin-top: 1.5rem;
+    }
+
+    .media_cart_s_p3{
+        flex-direction: column-reverse;
+    }
+
+    .width_s_p3{
+        width: 28rem;
+    }
+}
+

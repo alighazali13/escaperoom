@@ -1,0 +1,357 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    
+    <link rel="icon" type="image/x-icon" href="{% static 'dashboard/assets/img/favicon.ico'%}"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    
+    <link href="{% static 'assets/fonts/font.css/'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/assets/css/loader.css'%}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'dashboard/assets/js/loader.js'%}"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="{% static 'dashboard/bootstrap/css/bootstrap.min.css'%}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/plugins.css'%}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/custom/hover.css'%}" />
+
+    {% block links %}
+
+    {% endblock links %}
+
+    <title> {% block meta_title %}  {% endblock %} </title>
+
+</head>
+<body>
+    <div id="load_screen"> <div class="loader"> <div class="loader-content">
+        <div class="spinner-grow align-self-center"></div>
+    </div></div></div>
+
+    <div class="header-container fixed-top">
+        <header class="header navbar navbar-expand-sm">
+
+            <ul class="navbar-item theme-brand flex-row  text-center">
+                <li class="nav-item theme-logo">
+                    <a href="/">
+                        <img src="{% static 'dashboard/assets/img/90x90.jpg' %}" class="navbar-logo" alt="logo">
+                    </a>
+                </li>
+                <li class="nav-item theme-text">
+                    <a href="/" class="nav-link"> نام سایت </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-item flex-row ml-md-auto">
+
+                <li class="nav-item dropdown language-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'dashboard/assets/img/ca.png' %}" class="flag-width" alt="flag">
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{% static 'dashboard/assets/img/de.png' %}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;آلمانی</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{% static 'dashboard/assets/img/jp.png' %}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;ژاپنی</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{% static 'dashboard/assets/img/fr.png' %}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;فرانسوی</span></a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="{% static 'dashboard/assets/img/ca.png' %}" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;انگلیسی</span></a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown message-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="messageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                    <div class="dropdown-menu p-0 position-absolute" aria-labelledby="messageDropdown">
+                        <div class="">
+                            <a class="dropdown-item">
+                                <div class="">
+
+                                    <div class="media">
+                                        <div class="user-img">
+                                            <img class="usr-img rounded-circle" src="/media/{{urbrand.sm_logo}}" alt="profile">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="">
+                                                <h5 class="usr-name">محسن رضایی</h5>
+                                                <p class="msg-title">بروزرسانی اکانت</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="">
+
+                                    <div class="media">
+                                        <div class="user-img">
+                                            <img class="usr-img rounded-circle" src="/media/{{urbrand.sm_logo}}" alt="profile">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="">
+                                                <h5 class="usr-name">هومن شکیبا</h5>
+                                                <p class="msg-title">پیام شما</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="">
+
+                                    <div class="media">
+                                        <div class="user-img">
+                                            <img class="usr-img rounded-circle" src="/media/{{urbrand.sm_logo}}" alt="profile">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="">
+                                                <h5 class="usr-name">زهرا جوان</h5>
+                                                <p class="msg-title">اکانت شما بروز شد</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown notification-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class="badge badge-success"></span>
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown">
+                        <div class="notification-scroll">
+
+                            <div class="dropdown-item">
+                                <div class="media">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                    <div class="media-body">
+                                        <div class="notification-para"><span class="user-name">زهرا طباطبایی</span> عکس شما را دوست دارد. </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown-item">
+                                <div class="media">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                                    <div class="media-body">
+                                        <div class="notification-para"><span class="user-name">رضا جوان </span> پست شما را به اشتراک گذاشت</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown-item">
+                                <div class="media">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+                                    <div class="media-body">
+                                        <div class="notification-para"><span class="user-name">محمدرضا پر </span> از شما در اظهار نظر نام برد.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown user-profile-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src="/media/{{urbrand.sm_logo}}" alt="avatar">
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
+                        <div class="">
+                            <div class="dropdown-item">
+                                <a href="user_profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> پروفایل من</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="apps_mailbox.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg> صندوق ورودی</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="auth_lockscreen.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>قفل صفحه</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'logout_admin' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> خروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </header>
+    </div>
+
+    <div class="sub-header-container">
+        <header class="header navbar navbar-expand-sm">
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+            
+            <ul class="navbar-nav flex-row">
+                <li>
+                    <div class="page-header">
+
+                        <nav class="breadcrumb-one" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a id="parent_page" href="javascript:void(0);">{{parent_page}}</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span id="this_page" >{{this_page}}</span></li>
+                            </ol>
+                        </nav>
+
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-row ml-auto ">
+                <li class="nav-item more-dropdown">
+                    <div class="dropdown  custom-dropdown-icon">
+                        <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>تنظیمات</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
+                            <a class="dropdown-item" data-value="Settings" href="javascript:void(0);">تنظیمات</a>
+                            <a class="dropdown-item" data-value="Mail" href="javascript:void(0);">نامه</a>
+                            <a class="dropdown-item" data-value="Print" href="javascript:void(0);">پرینت</a>
+                            <a class="dropdown-item" data-value="Download" href="javascript:void(0);">دانلود</a>
+                            <a class="dropdown-item" data-value="Share" href="javascript:void(0);">اشتراک گذاری</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <input type="hidden" id="ul_on" value="{{ul_on}}">
+    <input type="hidden" id="li_on" value="{{li_on}}">
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <div class="sidebar-wrapper sidebar-theme">
+
+            <nav id="sidebar">
+                <div class="shadow-bottom"></div>
+                <ul class="list-unstyled menu-categories" id="accordionExample">
+
+                    <li class="menu">
+                        <a id="a_dashboard" href="#dashboard" data-toggle="collapse" class="dropdown-toggle">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-chess-rook fa-fw awsome-size mr-2"></i>
+                                <span> {{adminlogin.brand.en_name}} </span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="dashboard" data-parent="#accordionExample">
+                            
+                            <li id="ur_brand">
+                                <a href="{% url 'ur_brand' %}"> مدیریت مجموعه </a>
+                            </li>
+                            <li id="">
+                                <a href="{% url 'ur_slides' %}"> مدیریت اسلایدها </a>
+                            </li>
+                            <li id="ur_games">
+                                <a href="{% url 'ur_games'%}"> مدیریت بازی ها </a>
+                            </li>
+                            <li id="ur_admins">
+                                <a href="{% url 'ur_admins' %}"> مدیریت ادمین ها </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    
+                    <li class="menu">
+                        <a id="a_comments" href="#comments" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-comments fa-fw awsome-size mr-2"></i>
+                                <span> کامنت ها </span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="comments" data-parent="#accordionExample">
+                            <li id="manage_comments">
+                                <a href="{% url 'manage_comments' %}"> مدیریت کامنت ها </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu">
+                        <a id="a_statistics" href="{% url 'statistics_admin' %}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <i class="fa-solid fa-chart-pie fa-fw awsome-size mr-2"></i>
+                                <span> آمار </span>
+                            </div>
+                        </a>
+                    </li>
+                   
+                </ul>
+                
+            </nav>
+
+        </div>
+        
+        {% block content %}
+
+
+
+
+
+        {% endblock content %}
+
+        <div class="footer-wrapper">
+            <div class="footer-section f-section-1">
+                <p class=""> © 2024</p>
+            </div>
+            <div class="footer-section f-section-2">
+                <span class="copyright"> بومی سازی شده توسط : <a href="https://imanpa.ir/store/"> علی غزالی زاده </a> </span></div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'dashboard/assets/js/libs/jquery-3.1.1.min.js'%}"></script>
+    <script src="{% static 'dashboard/bootstrap/js/popper.min.js'%}"></script>
+    <script src="{% static 'dashboard/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'dashboard/plugins/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/app.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/custom.js'%}"></script>
+    <!-- <script src="{% static 'dashboard/assets/js/widgets/menupageviewer.js'%}"></script> -->
+    <script>
+        $(document).ready(function() {
+            App.init();
+        });
+    </script>
+    
+
+    <script src="{% static 'dashboard/assets/js/custom/ajaxsetup.js'%}"></script>
+
+
+
+    <script>
+        try {
+            const ul_on = document.getElementById('ul_on').value;
+            const li_on = document.getElementById('li_on').value;
+            const show = document.getElementById(ul_on)
+            const ul_tag = document.getElementById('a_'+ul_on)
+            const li_tag = document.getElementById(li_on)
+            show.classList.add('show')
+            ul_tag.setAttribute('data-active', 'true')
+            ul_tag.setAttribute('aria-expanded', 'true')
+            li_tag.classList.add('active')
+        } catch (error) {
+            const ul_on = document.getElementById('ul_on').value;
+            // const show = document.getElementById(ul_on)
+            const ul_tag = document.getElementById('a_'+ul_on)
+            // show.classList.add('show')
+            ul_tag.setAttribute('data-active', 'true')
+            ul_tag.setAttribute('aria-expanded', 'true')
+        }
+        
+    </script>
+
+    {% block scripts %}
+    
+    {% endblock scripts  %}
+
+</body>
+</html>

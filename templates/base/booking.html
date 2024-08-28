@@ -1,0 +1,55 @@
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" href="{% static 'assets/images/Kardinosanat2_light.png' %}">
+
+        
+    <link rel="stylesheet" href="{% static 'base/css/swiper/swiper-bundle.min.css'%}">
+    <link rel="stylesheet" href="{% static 'base/build/style.css'%}">
+    <link rel="stylesheet" href="{% static 'base/css/custom.css'%}">
+
+    <script src="{% static 'base/node_modules/@majidh1/jalalidatepicker/dist/jalalidatepicker.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'base/node_modules/@majidh1/jalalidatepicker/dist/jalalidatepicker.css' %}" />
+   <style>
+    .fullday{
+        background-color: gray !important;
+        border-radius: 0.25rem;
+    }
+   </style>
+</head>
+<body class="w-full bg-lightgray flex justify-center items-center">
+    <div class="w-6/12 h-3/6 rounded-3xl bg-green flex justify-center items-center text-white">
+        <input class="placeholder:text-blue-800 placeholder:text-lg bg-darkgray" placeholder="تاریخ را انتخاب کنید" name="ty" id="ty" data-jdp>
+    </div>
+      
+    <script src="{% static 'base/css/swiper/swiper-bundle.min.js'%}"></script>
+    <script src="{% static 'base/js/main.js'%}"></script>
+    <script>
+        jalaliDatepicker.startWatch({
+            date:true,
+            hideAfterChange: false,
+            useDropDownYears: false,
+            minDate: 'today',
+            // initDate: {year:1403,month:11,day:29},
+            maxDate: {year:1403,month:11,day:29},
+            dayRendering:function(dayOptions,input){
+                const elements = document.querySelectorAll('.last_weeks');
+                elements.forEach(element => {
+                    console.log(element)
+                });
+                if (dayOptions.day == 10 && dayOptions.year == 1403 && dayOptions.month == 5)
+                return {
+                    className: " fullday", // className
+                    isValid: false,
+                };
+            }
+            
+        });
+
+        document.getElementById("ty").addEventListener("jdp:change", function (e) { console.log(e) });
+    </script>
+</body>
+</html>

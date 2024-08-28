@@ -1,0 +1,155 @@
+/*! kamadatepicker - version 1.5.3 */
+.bd-hide {
+  display: none;
+}
+.bd-main {
+  padding: 5px;
+  z-index: 9999;
+  width: 100% !important;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bd-calendar {
+  padding: 0;
+  margin: 0;
+}
+.bd-calendar table {
+  border: none;
+  
+}
+
+.bd-title {
+  padding: 0;
+  margin: 0;
+}
+.bd-dropdown {
+  display: inline-block;
+  float: right;
+  width: 75px;
+}
+.bd-dropdown select {
+  width: 100%;
+}
+.bd-dropdown select,
+.bd-next,
+.bd-prev {
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+.bd-next,
+.bd-prev {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: #fff;
+  width: 30px;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  float: right;
+}
+.bd-table thead {
+  color: #fff;
+}
+.bd-table thead tr {
+  height: 50px;
+  cursor: context-menu;
+}
+.bd-table thead tr th {
+  text-align: center;
+}
+.bd-table tbody tr td {
+  border: none;
+}
+.bd-empty-cell,
+.bd-table-days button {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+.bd-table-days button {
+  background-color: #0e1726;
+  border: 0;
+  color: white;
+}
+.bd-table-days button:hover:enabled {
+  font-weight: 700;
+  border: 2px solid #fff !important;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.bd-table-days button:disabled {
+  border-radius: 100%;
+  cursor: not-allowed !important;
+  color: rgba(136, 142, 168, 0.22) !important;
+}
+.bd-today {
+  /* background-color: #dff0d8 !important; */
+  border: 2px solid #009688 !important;
+  border-radius: 100%;
+  color: #009688 !important;
+}
+.bd-holiday {
+  border: 2px solid red !important;
+  border-radius: 100%;
+  cursor: not-allowed !important;
+}
+
+.bd-selected-day {
+  font-weight: 700;
+  border: 2px solid #fff !important;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.bd-goto-today {
+  width: 350px;
+  height: 50px;
+  color: #fff;
+  background-color: #555;
+  padding-top: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.month{
+  font-size: 20px;
+  font-family: 'diroz';
+  background-color: #0e1726;
+}
+
+.closed_day{
+  border: 2px solid #720a0a !important; 
+  border-radius: 100%;
+  /* color: rgba(136, 142, 168, 0.22) !important;  */
+}
+
+.past_day{
+  /* border: 2px solid #808d9f !important; */
+  /* background-color: #808d9f !important; */
+  border-radius: 100%;
+  cursor: not-allowed !important;
+  color: rgba(136, 142, 168, 0.22) !important;
+}
+
+.closed_time{
+  color: rgba(176, 178, 190, 0.22);
+}
+
+
+@media only screen and (max-width: 640px) {
+  .bd-table-days button {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .bd-table-days button {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+  }
+}

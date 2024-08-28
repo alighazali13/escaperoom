@@ -1,0 +1,262 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="description" content="{% block meta_description %}  {% endblock %}">
+
+        <link rel="icon" type="image/png" href="{% static 'assets/images/Kardinosanat2_light.png' %}">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        
+        <link rel="stylesheet" href="{% static 'base/css/swiper/swiper-bundle.min.css'%}">
+        <link rel="stylesheet" href="{% static 'base/build/style.css'%}">
+        <link rel="stylesheet" href="{% static 'base/css/custom.css'%}">
+
+        {% block links %}
+            
+        {% endblock %}
+
+        <title> {% block meta_title %}  {% endblock %} </title>
+        <style>
+        .swiper-pagination-bullet{
+            background-color: white;
+            height: 20px;
+            width: 20px;
+            
+        }
+        @media only screen and (max-width: 640px){
+            .swiper-pagination-bullet{
+                background-color: white;
+                height: 10px;
+                width: 10px;
+            }
+        }
+        </style>
+    </head>
+    <body class="bg-lightgray font-YekanBakh-Regular text-sm text-white">
+        
+
+        {% if banner_header_status == 200 %}
+            <section class="h-20 w-full bg-white">
+                <a href=""><img class=" h-20 w-full" src="/media/{{banner_header.slide}}" alt="{{banner_header.name}}"></a>
+            </section>
+        {% endif %}
+    
+        <section class="bg-lightgray px-4 container max-w-full mx-auto justify-center">
+            <div class="container mx-auto max-w-screen-xl">
+                <div class="flex items-center justify-between gap-4 lg:gap-40">
+                    <div class="lg:hidden leading-none z-10">
+                        <div class="drawer ">
+                            <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+                            <div class="drawer-content">
+                                <label for="my-drawer-4" class="swap swap-rotate drawer-button">
+                                    <!-- this hidden checkbox controls the state -->
+                                    <input type="checkbox" class="invisible" />
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-black swap-off fill-current">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>
+                                        
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-black swap-on fill-current">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </label> 
+                            </div> 
+                                <div class="drawer-side">
+                                    <label for="my-drawer-4" class="drawer-overlay"></label>
+                                    <ul class="menu p-4 w-80 h-full bg-base-200 text-base-content list-none">
+                                        <div class="drawer-content text-left">
+                                            <label for="my-drawer-4" class="swap swap-rotate drawer-button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </label> 
+                                        </div> 
+                                        <li><a href="/">صفحه اصلی</a></li>
+                                        <li><a href="/games/">بازی ها</a></li>
+                                        <li><a href="checkout.html">پکت رو بساز</a></li>
+                                        <li><a href="about-us.html">درباره ما</a></li>
+                                        <li><a href="contact-us.html">تماس با ما</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center lg:flex-1 gap-8">
+                            <div>
+                                <a href="/"><img class="w-28 h-28" src="{% static 'assets/images/logo/logo.png' %}" alt="logo"></a>
+                            </div>
+                        <div class="hidden lg:block form-control w-full">
+                            <div class="relative">
+                                <input type="text" placeholder="جستجو کنید در  ..." class="input input-bordered w-full placeholder:text-sm" /> 
+                                <button class="btn absolute top-0 left-0 rounded-r-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <a href="question.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="hidden lg:block">
+                            {% if login_status == 200 %}
+                                <a href="{% url 'manage_comments' %}" > {{playerinfo_obj.first_name}} {{playerinfo_obj.last_name}} </a>               
+                            {% endif %}
+                            {% if login_status == 500 %}
+                                <button data-ripple-light="true"data-dialog-target="sign-in-dialog" > ورود / ثبت نام </button>               
+                            {% endif %}
+                        </div>
+                            <button data-ripple-light="true" data-dialog-target="sign-in-dialog" >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:hidden">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- modal -->
+                        <dialog data-dialog-backdrop="sign-in-dialog"   class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop:backdrop-blur-sm transition-opacity duration-300">
+                            <div data-dialog="sign-in-dialog" class="relative mx-auto flex w-full max-w-xl md:max-w-4xl flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                <div class="flex flex-col md:gap-4 gap-2 p-6">
+                                    <div class="flex flex-row justify-between">
+                                        <h4 class="block text-2xl antialiased font-YekanBakh-SemiBold leading-snug tracking-normal text-blue-gray-900">
+                                            ورود/ثبت نام
+                                        </h4>
+                                        <button data-ripple-dark="true" data-dialog-close="true" class="relative h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                                            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                  stroke-width="2" class="w-5 h-5">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                              </span>
+                                        </button>
+                                    </div>
+                                    <div id="form_log" class="gap-2 flex flex-col ">
+                                        <div id="phonenumberO" class="flex flex-col justify-between gap-2">
+                                            <input autocomplete="off" type="text" id="phonenumber" class="input input-bordered w-full" placeholder=" شماره تلفن" />
+                                        </div>
+                                        <div class="p-0">
+                                            <button data-ripple-dark="true" id="regdialogbtn" class="w-full select-none rounded-lg bg-[#5c8374] py-3 px-6 text-center align-middle font-YekanBakh-Regular text-xs uppercase text-white shadow-md shadow-[#044040] transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                                            ادامه دادن
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>  
+                        <!-- modal -->
+                    </dialog>
+                    <div class="flex justify-between items-center pb-4 ">
+                        <div class="block lg:hidden form-control w-full">
+                            <div class="relative">
+                            <input type="text" placeholder="جستجو کنید در  ..." class="input input-bordered w-full placeholder:text-sm" /> 
+                            <button class="btn absolute top-0 left-0 rounded-r-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                </svg>
+                                
+                            </button>
+                            </div>
+                        </div>  
+                        <div class="flex items-center gap-8">
+                            <div class="hidden lg:block">
+                                <ul class="flex gap-x-10 list-none">
+                                <li><a href="/">صفحه اصلی</a></li>
+                                <li><a href="/games/">بازی ها</a></li>
+                                <li><a href="checkout.html">پکت رو بساز</a></li>
+                                <li><a href="about-us.html">درباره ما</a></li>
+                                <li><a href="contact-us.html">تماس با ما</a></li>
+                                </ul>
+                            </div>
+                        </div> 
+                    </div>
+            </div>
+        </section>
+
+        {% block content %}
+
+        {% endblock %}
+
+
+        <footer class="py-10  text-white bg-green ">
+            <div class="container mx-auto max-w-screen-xl">
+                <div class="bg-teal p-8 md:rounded-3xl mb-10">
+                <div class="swiper partners">
+                    <div class="swiper-wrapper flex justify-center items-center">
+                        {% for brand in brands %}
+                            <div class="swiper-slide">
+                                <div class="flex justify-center">
+                                    <a href="{% url 'brand_details' brand.url %}"><img class="h-16 w-16" src="/media/{{brand.sm_logo}}" alt=""></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+                <div class="grid grid-cols-12 gap-4 leading-8 px-10 ">
+                    <div class="col-span-12 lg:col-span-5 flex flex-col justify-center items-center md:flex-row md:items-start">
+                        <img class="mb-4 w-3/12 rounded-3xl" src="{% static 'assets/images/logo/logo.png' %}" alt="logo image">
+                        <p class="font-YekanBakh-Light md:px-4 text-center text-sm leading-6 md:text-right">
+                            ترازو با فراهم آوردن تنوع معقولی از محصولات در کنار عرضه با قیمت مناسب آن‌ها، به دنبال خرید راحت و رضایت‌بخش ابزارآلات برای همراهان خودش است و این مهم را با مهیا کردن امکان بررسی فنی و کاربردی ابزارآلات و ارائه محتوای مناسب و غنی محقق می‌سازد.
+                        </p>
+                    </div>
+                    <div class="col-span-12 lg:col-span-2 text-right md:text-center">
+                        <h3 class="font-YekanBakh-Bold text-white mb-4 text-lg">دسترسی سریع</h3>
+                        <ul class="list-none">
+                            <li><a href="/">صفحه اصلی</a></li>
+                            <li><a href="question.html">سوالات متداول</a></li>
+                            <li><a href="contact-us.html">تماس با ما</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-12 lg:col-span-2 text-right md:text-center">
+                        <h3 class="font-YekanBakh-Bold text-white mb-4 text-lg">خدمات شرکت</h3>
+                        <ul class="list-none">
+                            <li><a href="{% url 'games' %}"> بازی ها </a></li>
+                            <li><a href="single-page.html"> پکت رو بساز </a></li>
+                            <li><a href="successful.html">دو روز بعد</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-12 lg:col-span-3">
+                        <!-- <h3 class="font-YekanBakh-Bold text-white mb-4 text-lg">عضویت در خبرنامه</h3> -->
+                        <div class="flex items-center">
+                            <img src="{% static 'base/assets/images/enamad_logo.png' %}" alt="">
+                            <img src="{% static 'base/assets/images/samandehi_logo.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+        <footer class="footer footer-center p-4 bg-green text-white flex justify-between">
+            <div>
+                <p> ساخته شده با ❤ توسط تیم فنی نام</p>
+            </div>
+            <div>
+                <p>Copyright © 2024</p>
+            </div>
+        </footer>
+    
+        <script src="{% static 'base/css/swiper/swiper-bundle.min.js'%}"></script>
+        <script src="{% static 'base/js/main.js'%}"></script>regdialogbtn
+        <script src="{% static 'base/js/ajax/login.js'%}"></script>regdialogbtn
+        <script src="{% static 'base/node_modules/@material-tailwind/html/scripts/dialog.js'%}"></script>
+        <script src="{% static 'base/node_modules/@material-tailwind/html/scripts/dismissible.js'%}"></script>
+
+        <script src="{% static 'dashboard/assets/js/custom/ajaxsetup.js'%}"></script>
+        <script src="{% static 'dashboard/assets/js/libs/jquery-3.1.1.min.js'%}"></script>
+
+        {% block scripts %}
+        
+        {% endblock %}
+
+    </body>
+</html>

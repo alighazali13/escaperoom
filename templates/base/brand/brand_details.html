@@ -1,0 +1,117 @@
+{% extends 'base/masterpage.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+  <section class="my-14">
+    <div class="full-x container mx-auto max-w-screen-xl ">
+      <div class="bg-teal dirounded full-x rounded-3xl pt-10 pb-4 " >
+        <div class="text-center mb-4 px-8 flex  justify-between items-center">
+          <img class="object-cover rounded-3xl w-4/12 md:w-1/12" src="/media/{{brand.sm_logo}}" alt="">
+          <h2 class="font-YekanBakh-SemiBold text-darkgray text-3xl uppercase mt-1"> {{brand.en_name}} </h2>
+        </div>
+        <div class="container mx-auto max-w-screen-xl">
+            <div class="swiper main-slider w-11/12 md:w-6/12">  
+                <div class="swiper-wrapper ">
+                    {% for slide in slides %}
+                        <div class="swiper-slide flex">
+                            <img class="object-cover rounded-3xl w-full" src="/media/{{slide.slide}}" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="text-center mb-2 mt-10">
+          <h2 class="font-YekanBakh-Bold text-darkgray text-3xl uppercase">درباره مجموعه {{brand.en_name}} بخوانید</h2>
+        </div>
+        <div class="leading-8 py-0 px-8">
+          {{brand.descriptions | safe}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="my-14">
+    <div class="full-x container mx-auto max-w-screen-xl">
+    <div class="bg-teal dirounded full-x rounded-3xl pt-10 pb-4" >
+        <div class=" mb-8 text-center pr-6">
+        <h2 class="font-YekanBakh-Regular text-3xl text-darkgray uppercase"> بازی های مجموعه {{brand.en_name}} </h2>
+        </div>
+        <div class="grid grid-cols-12 gap-4 p-4">
+
+
+        <div class="col-span-12 ">
+            <div class="swiper cinema-product">
+            <div class="swiper-wrapper flex items-center">
+                {% for game in games %}
+                    <div class="swiper-slide">
+                        <div class="bg-lightgray rounded-3xl leading-10 p-4 media_card">
+                        <div class="relative">
+                            <a href="{% url 'game_details' game.brand.url game.url %}" class="flex flex-col items-center justify-center">
+                            <img class="mb-4 mt-2 rounded-3xl height" src="/media/{{game.poster}}" alt="">
+                            </a>
+                        </div>
+                        <div class="text-center px-3 media_text_card sm:px-2">
+                            <div class="flex justify-between gap-4 text-base mt-4 text-white media_text_card">
+                            <a href="{% url 'game_details' game.brand.url game.url %}">
+                                <h3 class="font-YekanBakh-Regular text-lg"> 
+                                    {{game.fa_name}}
+                                </h3>
+                            </a>
+                            <span class="font-YekanBakh-Regular text-base uppercase media_none"> 
+                                {{game.game_type.fa_name}}
+                            </span>
+                            </div>
+                            <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
+                            <span class="text-orange font-YekanBakh-Regular text-base  line-through"> {{game.price|add:110}} هزار تومان </span>
+                            <span class="text-white font-YekanBakh-Regular text-base">{{game.price}} هزار تومان</span>
+                            </div>  
+                            <div class="flex justify-center gap-2 items-center mt-4 media_none">
+                            <div class="flex justify-center text-base mt-4 ">
+                                <a href="{% url 'game_details' game.brand.url game.url %}" class="text-center w-32 h-10 bg-green hover:bg-slate-950 text-white py-2 px-4 rounded-full"> اطلاعات بیشتر </a>
+                            </div>
+                            </div>  
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                
+
+            </div>
+            <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        
+        
+        </div>
+    </div>
+    </div>
+    </section>
+
+{% endblock content %}
+
+{% block meta_title %}
+    site | {{brand.en_name}}
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+
+{% endblock links %}
+
+{% block scripts %}
+
+{% endblock scripts %}

@@ -1,0 +1,12 @@
+.a_hover:hover{
+    color: #009688 !important;
+}
+.danger_hover:hover{
+    color: rgb(192, 13, 13);
+}
+.primary_hover:hover{
+    color: #2196f3;
+}
+.green_hover:hover{
+    color: #21a52c;
+}
