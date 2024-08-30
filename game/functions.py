@@ -57,12 +57,13 @@ def get_gametime(request):
         game_obj = game.objects.get(fa_name=data['name'], active=True)
 
     game_time_obj = game_time.objects.none()
-    if game_time.objects.filter(active=True).exists():
-        game_time_obj = game_time.objects.filter(active=True)
+    if game_time.objects.filter(game=game_obj, active=True).exists():
+        game_time_obj = game_time.objects.filter(game=game_obj, active=True)
 
     
 
     game_time_length  = len(game_time_obj)
+    print(game_time_length)
     
 
     closed_time_obj = closed_time.objects.none()

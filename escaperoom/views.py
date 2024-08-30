@@ -22,6 +22,7 @@ def landing_page(request):
     games_status = 404
     allgames_status = 404
 
+    playerinfo_obj = player_info.objects.none()
     if 'player_phonenumber_s' not in request.session:
         login_status = 500
     else:
@@ -89,12 +90,10 @@ def landing_page(request):
 
     
     # today
-    free_games = get_free_for_book()
     games = game.objects.none()
-    for free_game in free_games :
-        if game.objects.filter(game_type__fa_name='اسکیپ روم', active=True).exists():
-            games_status = 200
-            games = game.objects.filter(game_type__fa_name='اسکیپ روم', active=True)[:6]
+    if game.objects.filter(game_type__fa_name='اسکیپ روم', active=True).exclude(today_game_times=0).exclude(today_close=True).exists():
+        games_status = 200
+        games = game.objects.filter(game_type__fa_name='اسکیپ روم', active=True).exclude(today_game_times=0).exclude(today_close=True)[:6]
 
     # all active game 
     allgames = game.objects.none()

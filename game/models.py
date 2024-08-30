@@ -80,6 +80,7 @@ class game_details(models.Model):
     time = models.IntegerField()
     short_address = models.CharField(max_length=50)
     full_address = models.TextField()
+    game_time_number = models.IntegerField(default=4)
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -117,7 +118,7 @@ class game_genres(models.Model):
 
 class game_time(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
-    number = models.IntegerField(default=4)
+    
     game = models.ForeignKey(game, on_delete=models.CASCADE)
     time_from = models.CharField(max_length=4)
     time_to = models.CharField(max_length=4)

@@ -7,7 +7,13 @@ def brand_details(request, url):
     slider_status = 404
     games_status = 404
 
-    
+    playerinfo_obj = player_info.objects.none()
+    if 'player_phonenumber_s' not in request.session:
+        login_status = 500
+    else:
+        playerlogin_obj = player_login.objects.get(phonenumber = request.session['player_phonenumber_s'], active=True) 
+        playerinfo_obj = player_info.objects.get(player_login=playerlogin_obj, active=True)
+        login_status = 200
 
     brands_obj = brand.objects.none()
     if brand.objects.filter(active=True).exists():
@@ -33,6 +39,9 @@ def brand_details(request, url):
         return redirect('/')
 
     context = {
+        'login_status' : login_status,
+        'playerinfo_obj' : playerinfo_obj,
+        
         'brand' : brand_obj,
         
         'brands' : brands_obj,

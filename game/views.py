@@ -7,6 +7,7 @@ def games(request):
     games_status = 404
     login_status = 404
 
+    playerinfo_obj = player_info.objects.none()
     if 'player_phonenumber_s' not in request.session:
         login_status = 500
     else:

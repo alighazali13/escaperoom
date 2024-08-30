@@ -63,7 +63,7 @@
                                                         <a href="{% url 'brand_details' game.game.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase media_none hover:text-[#092635]"> {{game.game.brand.en_name}} </span></a>
                                                     </div>
                                                     <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
-                                                        <span class="text-white font-YekanBakh-Regular text-base"> 2 سانس خالی </span>
+                                                        <span class="text-white font-YekanBakh-Regular text-base"> {{game.game.today_game_times}} سانس خالی </span>
                                                         <span class="text-white font-YekanBakh-Regular text-base">{{game.game.price}} هزار تومان</span>
                                                     </div>  
                                                     <div class="flex justify-center gap-2 items-center mt-4 media_none">
@@ -138,7 +138,7 @@
         <section class="my-14 px-4">
             <div class="container mx-auto max-w-screen-xl">
                 <div class="text-right mb-8 flex flex-row justify-between items-center">
-                    <h2 class="font-YekanBakh-Bold text-2xl text-green "> سانس خالی </h2>
+                    <h2 class="font-YekanBakh-Bold text-2xl text-green "> سانس های خالی امروز </h2>
                     <a href="" class="font-YekanBakh-Regular text-xs text-white  ml-5"> مشاهده همه >> </a>
                 </div>
                 <div class="swiper slider-product1">
@@ -166,7 +166,7 @@
                                                 <a href="{% url 'brand_details' game.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase media_none hover:text-[#5c8374]"> {{game.brand.en_name}} </span></a>
                                             </div>
                                             <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
-                                                <span class="text-white font-YekanBakh-Regular text-base">دو سانس</span>
+                                                <span class="text-white font-YekanBakh-Regular text-base">{{game.today_game_times}} سانس</span>
                                                 <span class="text-white font-YekanBakh-Regular text-base"> {{game.price}} هزار تومان</span>
                                             </div>  
                                             <div class="flex justify-center gap-2 items-center mt-4 media_none">
@@ -240,7 +240,7 @@
                                                         <a href="{% url 'brand_details' cinema.brand.url %}"><span class="font-YekanBakh-Regular text-base uppercase media_none hover:text-[#092635]"> {{cinema.brand.en_name}} </span></a>
                                                     </div>
                                                     <div class="flex justify-between gap-4 text-base mt-4 media_text_card">
-                                                        <span class="text-white font-YekanBakh-Regular text-base"> 3 سانس خالی </span>
+                                                        <span class="text-white font-YekanBakh-Regular text-base"> {{cinema.today_game_times}} سانس خالی </span>
                                                         <span class="text-white font-YekanBakh-Regular text-base"> {{cinema.price}} هزار تومان </span>
                                                     </div>  
                                                     <div class="flex justify-center gap-2 items-center mt-4 media_none">

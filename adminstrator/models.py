@@ -47,7 +47,7 @@ class admin_info(models.Model):
     active = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.first_name + self.last_name)
+        return str(self.first_name + ' ' + self.last_name)
 
 class admin_codes(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
