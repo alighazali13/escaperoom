@@ -159,12 +159,12 @@
     <div id="brief" class="bg-teal  rounded-3xl p-8 pt-0 leading-8 tabcontent w-full" style="display: block;">
       <div class="grid grid-cols-12 ">
         <div class="col-span-12  p-4">
-            <span class="text-lg text-[#9Ec8b9]"> قوانین بازی : </span>
-            <div class="pr-4 mb-4">{{game.roles | safe}}</div>
-            <span class="text-lg text-[#9Ec8b9]"> توضیحات : </span>
-            <div class="pr-4 mb-4">{{game.descriptions | safe}}</div>
-            <span class="text-lg text-[#9Ec8b9]"> توضیحات بازی : </span>
-            <div class="pr-4">{{game.unique_description  | safe}}</div>
+            <span class="text-lg text-[#9Ec8b9] block"> قوانین بازی : </span>
+            <div class="pr-4 mb-4 relative">{{game.roles | safe}}<button class="more-btn absolute bottom-1 text-red-600">بیشتر</button></div>
+            <span class="text-lg text-[#9Ec8b9] block"> توضیحات : </span>
+            <div class="pr-4 mb-4">{{game.descriptions | safe}}<button class="more-btn">بیشتر</button></div>
+            <span class="text-lg text-[#9Ec8b9] block"> توضیحات بازی : </span>
+            <div class="pr-4">{{game.unique_description  | safe}}<button class="more-btn">بیشتر</button></div>
         </div>
       </div>
     </div>
@@ -297,7 +297,7 @@
 {% endblock meta_description %}
 
 {% block links %}
-
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css" />
     <style>
         button.active {
             --tw-border-opacity:1;
