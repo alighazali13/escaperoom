@@ -133,8 +133,10 @@ def close_time(request):
         selected_date = jdatetime.datetime(int(year), int(month),int(day))
 
     game_obj = game.objects.none()
+    game_det_obj = game_details.objects.none()
     if game.objects.filter(fa_name=name, active=True).exists():
         game_obj = game.objects.get(fa_name=name, active=True)
+        game_det_obj = game_details.objects.get(game=game_obj, active=True)
 
     game_time_obj = game_time.objects.none()
     if game_time.objects.filter(id=data['time'], active=True):
@@ -163,7 +165,24 @@ def close_time(request):
             )
             if today.strftime("%Y-%m-%d") == selected_date.strftime("%Y-%m-%d"):
                 game_obj.today_game_times = game_obj.today_game_times - 1
+                if game_obj.today_game_times == 0:
+                    closed_time_today = closed_time.objects.filter(game=game_obj, day=today, active=True)
+                    print('game_obj.today_game_times')
+                    print(game_obj.today_game_times)
+                    print('len(closed_time_today)')
+                    print(len(closed_time_today))
+                    print('game_det_obj.game_time_number')
+                    print(game_det_obj.game_time_number)
+                    if len(closed_time_today) == game_det_obj.game_time_number:
+                        status = 205
+                    closed_day.objects.create(
+                        game = game_obj,
+                        day = today,
+                        active = True
+                    )
+                    game_obj.today_close = True
                 game_obj.save()
+                
         context = {
             'status':status,
             'msg':msg,
@@ -210,6 +229,13 @@ def open_time(request):
             game_time_id = game_time_obj.id
             game_time_val = game_time_obj.time_from + ' تا ' + game_time_obj.time_to
             if today.strftime("%Y-%m-%d") == selected_date.strftime("%Y-%m-%d"):
+                if game_obj.today_game_times == 0:
+                    game_obj.today_close = False
+                    closed_day.objects.get(
+                        game = game_obj,
+                        day = today,
+                        active = True
+                    ).delete()
                 game_obj.today_game_times = game_obj.today_game_times + 1
                 game_obj.save()
         context = {
@@ -320,11 +346,18 @@ def buy_time(request):
             msg = 'این سانس قبلا بسته شده است .'
         else:
             status = 200
-            msg = ' سانس خریده شد شد . '
+            msg = ' سانس خریده شد . '
             sold_time.objects.get(game=game_obj, game_time=game_time_obj, day=selected_date).delete()
             game_time_id = game_time_obj.id
             game_time_val = game_time_obj.time_from + ' تا ' + game_time_obj.time_to
             if today.strftime("%Y-%m-%d") == selected_date.strftime("%Y-%m-%d"):
+                # if game_obj.today_game_times == 0:
+                #     game_obj.today_close = False
+                #     closed_day.objects.get(
+                #         game = game_obj,
+                #         day = today,
+                #         active = True
+                #     ).delete()
                 game_obj.today_game_times = game_obj.today_game_times + 1
                 game_obj.save()
         context = {
@@ -375,16 +408,38 @@ def close_day(request):
         else:
             if selected_date.strftime('%m') > month:
                 day = '0'+day
-            status = 200
-            msg = 'روز بسته شد .'
-            closed_day.objects.create(
-                game = game_obj,
-                day = selected_date,
-                active = True
-            )
+            print('today')
+            print(today)
+            print('selected_date')
+            print(selected_date)
+
+            if today.strftime("%Y-%m-%d") != selected_date.strftime("%Y-%m-%d"):
+                closed_day.objects.create(
+                    game = game_obj,
+                    day = selected_date,
+                    active = True
+                )
+                status = 200
+                msg = 'روز بسته شد .'
+            
             if today.strftime("%Y-%m-%d") == selected_date.strftime("%Y-%m-%d"):
-                game_obj.today_close = True
-                game_obj.save()
+                
+                if closed_day.objects.filter(game=game_obj, day=today, active=True).exists():
+                    print('kos sher')
+                    msg = 'این روز قبلا بسته شده است .'
+                    status = 500
+                else:
+                    closed_day.objects.create(
+                        game = game_obj,
+                        day = today,
+                        active = True
+                    )
+                    game_obj.game_time_number = 0
+                    game_obj.today_close = True
+                    game_obj.save()
+                    status = 200
+                    msg = 'روز بسته شد .'
+                    
         context = {
             'status':status,
             'msg':msg,
@@ -413,14 +468,20 @@ def open_day(request):
         selected_date = jdatetime.datetime(int(year), int(month),int(day))
     
     game_obj = game.objects.none()
+    game_det_obj = game_details.objects.none()
     if game.objects.filter(fa_name=name, active=True).exists():
         game_obj = game.objects.get(fa_name=name, active=True)
+        game_det_obj = game_details.objects.get(game=game_obj)
+
 
     if closed_day.objects.filter(game=game_obj, day=selected_date, active=True).exists():
         closed_day.objects.filter(game=game_obj, day=selected_date, active=True).delete()
         status = 200
         msg = 'روز باز شد، 3 ثانیه صبر کنید  .'
         if today.strftime("%Y-%m-%d") == selected_date.strftime("%Y-%m-%d"):
+            closed_time.objects.filter(game=game_obj, day=today, active=True).delete()  
+            sold_time.objects.filter(game=game_obj, day=today, active=True).delete()  
+            game_obj.today_game_times = game_det_obj.game_time_number
             game_obj.today_close = False
             game_obj.save()
     else:

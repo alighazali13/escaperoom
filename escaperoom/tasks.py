@@ -52,6 +52,8 @@ def update_game_values():
         for ctt in closed_time_today:
             ctgame_obj = ctt.game
             ctgame_obj.today_game_times -= 1
+            if ctgame_obj.today_game_times == 0:
+                today_close = True
             ctgame_obj.save()
 
     if sold_time.objects.filter(day=today).exists():
@@ -59,6 +61,8 @@ def update_game_values():
         for stt in sold_time_today:
             stgame_obj = stt.game
             stgame_obj.today_game_times -= 1
+            if stgame_obj.today_game_times == 0:
+                today_close = True
             stgame_obj.save()
 
     

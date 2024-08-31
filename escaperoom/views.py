@@ -94,7 +94,7 @@ def landing_page(request):
     if game.objects.filter(game_type__fa_name='اسکیپ روم', active=True).exclude(today_game_times=0).exclude(today_close=True).exists():
         games_status = 200
         games = game.objects.filter(game_type__fa_name='اسکیپ روم', active=True).exclude(today_game_times=0).exclude(today_close=True)[:6]
-
+        print(games)
     # all active game 
     allgames = game.objects.none()
     first_row = game.objects.none()

@@ -1090,6 +1090,8 @@ document.getElementsByName("close_time_BTN")[0].addEventListener('click', functi
             document.getElementById('success_alert').classList.add('d-none');
             document.getElementById('danger_alert').classList.remove('d-none');
             document.getElementById('msg-danger').innerHTML = res.msg;
+          }else if (res.status == 205) {
+            window.location.reload();
           }
       } ,
       error : function (error) {

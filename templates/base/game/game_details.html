@@ -160,11 +160,20 @@
       <div class="grid grid-cols-12 ">
         <div class="col-span-12  p-4">
             <span class="text-lg text-[#9Ec8b9] block"> قوانین بازی : </span>
-            <div class="pr-4 mb-4 relative">{{game.roles | safe}}<button class="more-btn absolute bottom-1 text-red-600">بیشتر</button></div>
+            <div class="description relative">
+              <div class="pr-4 mb-4 text">{{game.roles | safe}}</div>
+              <button class="more-btn absolute bottom-0 text-[#9Ec8b9] inline min-w-full bg-opacity-100 rounded-b-2xl bg-[#072b2b]">بیشتر</button>
+            </div>
             <span class="text-lg text-[#9Ec8b9] block"> توضیحات : </span>
-            <div class="pr-4 mb-4">{{game.descriptions | safe}}<button class="more-btn">بیشتر</button></div>
+            <div class="description relative">
+              <div class="pr-4 mb-4 text">{{game.descriptions | safe}}</div>
+              <button class="more-btn absolute bottom-0 text-[#9Ec8b9] inline min-w-full bg-opacity-100 rounded-b-2xl bg-[#072b2b]">بیشتر</button>
+            </div>
             <span class="text-lg text-[#9Ec8b9] block"> توضیحات بازی : </span>
-            <div class="pr-4">{{game.unique_description  | safe}}<button class="more-btn">بیشتر</button></div>
+            <div class="description relative">
+              <div class="pr-4 mb-4 text">{{game.unique_description | safe}}</div>
+              <button class="more-btn absolute bottom-0 text-[#9Ec8b9] inline min-w-full bg-opacity-100 rounded-b-2xl bg-[#072b2b]">بیشتر</button>
+            </div>
         </div>
       </div>
     </div>
@@ -310,6 +319,7 @@
 {% endblock links %}
 
 {% block scripts %}
+  <script src="{% static 'base/js/detailes_handler.js' %}"></script>
 
 <script>
     function openpage(evt, tab) {

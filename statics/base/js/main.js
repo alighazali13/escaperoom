@@ -245,7 +245,10 @@ var swiper = new Swiper(".main-slider", {
     },
   });
 
-  count_down_two_days_later();
+  if (document.getElementById('dtl').value) {
+    count_down_two_days_later();
+  }
+  
 
 
 
